@@ -40,6 +40,8 @@ public class SpringJpaConfig {
         Map<String, Object> jpaProperties = new HashMap<>();
         jpaProperties.put("hibernate.ejb.naming_strategy","org.hibernate.cfg.ImprovedNamingStrategy");
         jpaProperties.put("hibernate.jdbc.batch_size",50);
+        jpaProperties.put("hibernate.hbm2ddl.auto","update");
+        jpaProperties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
 
         factory.setJpaPropertyMap(jpaProperties);
         factory.afterPropertiesSet();
