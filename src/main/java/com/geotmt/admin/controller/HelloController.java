@@ -1,9 +1,11 @@
 package com.geotmt.admin.controller;
 
 import com.geotmt.admin.dao.TTableMyBatisDao;
+import com.geotmt.admin.model.mongodb.Persion;
 import com.geotmt.admin.service.TTableService;
 import com.geotmt.commons.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +23,8 @@ public class HelloController {
     private RedisService redisUtil;
     @Autowired
     private TTableMyBatisDao myBatisDao ;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     /**
      * 测试mvc
@@ -63,5 +67,20 @@ public class HelloController {
     @ResponseBody
     Object testMyBatis() {
         return this.myBatisDao.find() ;
+    }
+
+    /**
+     * 测试mongodb
+     *
+     * @return 对象信息
+     */
+    @RequestMapping("/mongo")
+    @ResponseBody
+    Object testMongo() {
+        Persion persion = new Persion() ;
+        persion.set_id("123");
+        persion.setName("大老张");
+        this.mongoTemplate.save(persion);
+        return this.mongoTemplate.findById("123",Persion.class);
     }
 }
