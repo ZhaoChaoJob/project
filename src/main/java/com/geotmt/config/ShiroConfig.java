@@ -2,18 +2,13 @@ package com.geotmt.config;
 
 import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.service.SysPermissionService;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -58,8 +53,8 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
         //自定义拦截器
-        Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
-
+        Map<String, Filter> filtersMap = new LinkedHashMap<>();
+        filtersMap.put("auth3",new ShiroFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         // 权限控制map
@@ -79,7 +74,7 @@ public class ShiroConfig {
 
         // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "shiroFilter");
 
         // 从数据库获取
         List<SysPermission> list = systemService.getPermisAll();
@@ -87,7 +82,7 @@ public class ShiroConfig {
         for (SysPermission sysPerm : list) {
             filterChainDefinitionMap.put(sysPerm.getUrl(), "authc"/*sysPerm.getPermissionStr()*/);
         }
-
+        filterChainDefinitionMap.put("/jpa", "auth3");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

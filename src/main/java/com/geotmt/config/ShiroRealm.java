@@ -4,6 +4,7 @@ import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.model.jpa.SysRole;
 import com.geotmt.admin.model.jpa.SysUser;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.commons.Entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -23,6 +24,11 @@ public class ShiroRealm  extends AuthorizingRealm {
     @Autowired
     private SysUserService systemService;
 
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof UsernamePasswordExtToken;
+    }
+
     /**
      * 认证信息.(身份验证) : Authentication 是用来验证用户身份
      *
@@ -32,7 +38,7 @@ public class ShiroRealm  extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
-        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        UsernamePasswordExtToken token = (UsernamePasswordExtToken) authcToken;
         String name = token.getUsername();
         String password = String.valueOf(token.getPassword());
 
