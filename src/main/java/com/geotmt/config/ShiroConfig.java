@@ -22,6 +22,7 @@ import java.util.Map;
 
 /**
  * shiro配置项
+ * https://download.csdn.net/download/lzbcitl/10537303
  */
 @Configuration
 public class ShiroConfig {
