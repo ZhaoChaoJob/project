@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 
 /**
  * MyBatis配置
+ * https://www.cnblogs.com/zhuxiaojie/p/5836159.html
  */
 @Configuration
 //加上这个注解，使得支持事务
