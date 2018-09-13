@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * mongodb配置
+ * https://blog.csdn.net/daibang2182/article/details/80585004
  */
 @Configuration
 public class MongoConfig {
