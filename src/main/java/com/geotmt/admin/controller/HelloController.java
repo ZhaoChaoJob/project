@@ -1,5 +1,6 @@
 package com.geotmt.admin.controller;
 
+import com.geotmt.admin.dao.TTableMyBatisDao;
 import com.geotmt.admin.service.TTableService;
 import com.geotmt.commons.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class HelloController {
     private TTableService tTableService;
     @Autowired
     private RedisService redisUtil;
+    @Autowired
+    private TTableMyBatisDao myBatisDao ;
 
     /**
      * 测试mvc
@@ -49,5 +52,16 @@ public class HelloController {
     @ResponseBody
     Object testRedis() {
         return this.redisUtil.exists("key");
+    }
+
+    /**
+     * 测试myBatis
+     *
+     * @return 对象信息
+     */
+    @RequestMapping("/myBatis")
+    @ResponseBody
+    Object testMyBatis() {
+        return this.myBatisDao.find() ;
     }
 }
