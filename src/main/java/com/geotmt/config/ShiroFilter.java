@@ -21,6 +21,7 @@ public class ShiroFilter  extends AuthenticatingFilter {
         String token = getRequestToken((HttpServletRequest)servletRequest);
         UsernamePasswordExtToken usernamePasswordExtToken = new UsernamePasswordExtToken();
         usernamePasswordExtToken.setApiToken(token);
+        // 这里应当根据token去获取用户名和密码
         if("222".equals(token)){
             usernamePasswordExtToken.setUsername("admin");
             usernamePasswordExtToken.setPassword("123".toCharArray());
