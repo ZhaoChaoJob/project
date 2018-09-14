@@ -11,7 +11,9 @@ import java.io.Serializable;
 
 /**
  * shiro session dao
- *
+ * session 本地化
+ * 如果不自己注入sessionDAO，defaultWebSessionManager会使用MemorySessionDAO做为默认实现类
+ * https://blog.csdn.net/lishehe/article/details/45223823
  */
 @Component
 public class ShiroRedisSessionDAO extends EnterpriseCacheSessionDAO {
