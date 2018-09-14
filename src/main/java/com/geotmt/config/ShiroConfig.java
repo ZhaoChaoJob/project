@@ -3,12 +3,16 @@ package com.geotmt.config;
 import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.service.SysPermissionService;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -60,7 +64,7 @@ public class ShiroConfig {
         // 权限控制map
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
-        filterChainDefinitionMap.put("/js/*.js", "anon");
+        filterChainDefinitionMap.put("/js/*.js", "anon"); // 放行
         filterChainDefinitionMap.put("/plugins/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
@@ -82,16 +86,17 @@ public class ShiroConfig {
         for (SysPermission sysPerm : list) {
             filterChainDefinitionMap.put(sysPerm.getUrl(), "authc"/*sysPerm.getPermissionStr()*/);
         }
-        filterChainDefinitionMap.put("/jpa", "auth3");
+        filterChainDefinitionMap.put("/jpa", "auth3"); // 搜身检查
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
 
     @Bean
-    public SecurityManager securityManager() {
+    public SecurityManager securityManager(SessionManager sessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(myShiroRealm());
+        securityManager.setSessionManager(sessionManager);
         return securityManager;
     }
 
@@ -104,6 +109,21 @@ public class ShiroConfig {
     public ShiroRealm myShiroRealm() {
         ShiroRealm myShiroRealm = new ShiroRealm();
         return myShiroRealm;
+    }
+
+    @Bean
+    @DependsOn("shiroRedisSessionDAO") // 控制启动顺序
+    public SessionManager sessionManager(ShiroRedisSessionDAO shiroRedisSessionDAO){
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+//        ShiroRedisSessionDAO shiroRedisSessionDAO = new ShiroRedisSessionDAO();
+        //设置session过期时间为1小时(单位：毫秒)，默认为30分钟
+        sessionManager.setGlobalSessionTimeout(60 * 60 * 1000);
+        sessionManager.setSessionValidationSchedulerEnabled(true);
+//        sessionManager.setSessionIdUrlRewritingEnabled(false);
+
+        //如果开启redis缓存且geo.shiro.redis=true，则shiro session存到redis里
+        sessionManager.setSessionDAO(shiroRedisSessionDAO);
+        return sessionManager;
     }
 
     /**

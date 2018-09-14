@@ -2,6 +2,7 @@ package com.geotmt.admin.controller;
 
 import com.geotmt.admin.model.jpa.SysUser;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.commons.Entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class SysUserController {
 		Map<String, Object> resultMap = new LinkedHashMap<>();
 		try {
 
-			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			UsernamePasswordExtToken token = new UsernamePasswordExtToken(username, password);
 			SecurityUtils.getSubject().login(token);
 			resultMap.put("status", 200);
 			resultMap.put("message", "登录成功");
