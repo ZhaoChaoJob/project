@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "sys_role")
+@Table(name = "t_sys_role")
 @Getter
 @Setter
 public class SysRole implements Serializable {

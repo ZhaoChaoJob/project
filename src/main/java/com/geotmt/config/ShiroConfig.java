@@ -9,7 +9,6 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -143,36 +142,7 @@ public class ShiroConfig {
 
 // =========== 建表语句 ==========
 /*
- CREATE TABLE `sys_permission` (
-  `permission_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `available` bit(1) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `parent_id` bigint(20) DEFAULT NULL,
-  `parent_ids` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `permission_str` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `resource_type` enum('menu','button') COLLATE utf8_bin DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-CREATE TABLE `sys_role` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `description` varchar(200) COLLATE utf8_bin DEFAULT NULL,
-  `role_name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
-CREATE TABLE `sys_role_permission` (
-  `role_id` bigint(20) NOT NULL,
-  `permission_id` bigint(20) NOT NULL,
-  KEY `FKomxrs8a388bknvhjokh440waq` (`permission_id`),
-  KEY `FK9q28ewrhntqeipl1t04kh1be7` (`role_id`),
-  CONSTRAINT `FK9q28ewrhntqeipl1t04kh1be7` FOREIGN KEY (`role_id`) REFERENCES `sys_role` (`role_id`),
-  CONSTRAINT `FKomxrs8a388bknvhjokh440waq` FOREIGN KEY (`permission_id`) REFERENCES `sys_permission` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-CREATE TABLE `sys_user` (
+CREATE TABLE `t_sys_user` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_name_id` bigint(20) DEFAULT NULL,
   `create_time` date DEFAULT NULL,
@@ -183,16 +153,56 @@ CREATE TABLE `sys_user` (
   `nickname` varchar(120) COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(120) COLLATE utf8_bin DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
+  `createNameId` bigint(20) DEFAULT NULL,
+  `createTime` date DEFAULT NULL,
+  `lastLoginTime` datetime DEFAULT NULL,
+  `lastUpdateNameId` bigint(20) DEFAULT NULL,
+  `lastUpdateTime` date DEFAULT NULL,
   PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `t_sys_role` (
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `description` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `role_name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `roleId` bigint(20) NOT NULL,
+  `roleName` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `sys_user_role` (
+CREATE TABLE `t_sys_permission` (
+  `permission_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `available` bit(1) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `parent_ids` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permission_str` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `resource_type` enum('menu','button') COLLATE utf8_bin DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionId` bigint(20) NOT NULL,
+  `parentId` bigint(20) DEFAULT NULL,
+  `parentIds` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `permissionStr` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `resourceType` enum('menu','button') COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `t_sys_role_permission` (
+  `role_id` bigint(20) NOT NULL,
+  `permission_id` bigint(20) NOT NULL,
+  KEY `FKomxrs8a388bknvhjokh440waq` (`permission_id`),
+  KEY `FK9q28ewrhntqeipl1t04kh1be7` (`role_id`),
+  CONSTRAINT `FK9q28ewrhntqeipl1t04kh1be7` FOREIGN KEY (`role_id`) REFERENCES `t_sys_role` (`role_id`),
+  CONSTRAINT `FKomxrs8a388bknvhjokh440waq` FOREIGN KEY (`permission_id`) REFERENCES `t_sys_permission` (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `t_sys_user_role` (
   `uid` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL,
   KEY `FKhh52n8vd4ny9ff4x9fb8v65qx` (`role_id`),
   KEY `FKput17v9wwg8wiukw8ykroaaag` (`uid`),
-  CONSTRAINT `FKhh52n8vd4ny9ff4x9fb8v65qx` FOREIGN KEY (`role_id`) REFERENCES `sys_role` (`role_id`),
-  CONSTRAINT `FKput17v9wwg8wiukw8ykroaaag` FOREIGN KEY (`uid`) REFERENCES `sys_user` (`uid`)
+  CONSTRAINT `FKhh52n8vd4ny9ff4x9fb8v65qx` FOREIGN KEY (`role_id`) REFERENCES `t_sys_role` (`role_id`),
+  CONSTRAINT `FKput17v9wwg8wiukw8ykroaaag` FOREIGN KEY (`uid`) REFERENCES `t_sys_user` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
- */
+*/

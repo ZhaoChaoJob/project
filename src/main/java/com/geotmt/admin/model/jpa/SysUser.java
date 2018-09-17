@@ -10,7 +10,7 @@ import java.util.List;
 
 //用户表
 @Entity
-@Table(name = "sys_user")
+@Table(name = "t_sys_user")
 @Getter
 @Setter
 public class SysUser implements Serializable {

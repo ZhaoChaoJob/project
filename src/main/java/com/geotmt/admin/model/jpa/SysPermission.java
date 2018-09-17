@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "sys_permission")
+@Table(name = "t_sys_permission")
 @Getter
 @Setter
 public class SysPermission implements Serializable {
