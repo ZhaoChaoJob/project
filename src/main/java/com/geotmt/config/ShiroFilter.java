@@ -1,6 +1,7 @@
 package com.geotmt.config;
 
 import com.geotmt.commons.Entity.UsernamePasswordExtToken;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
@@ -82,7 +83,7 @@ public class ShiroFilter  extends AuthenticatingFilter {
         String token = httpRequest.getHeader("token");
 
         //如果header中不存在token，则从参数中获取token
-        if(token != null && !"".equals(token)){
+        if(StringUtils.isEmpty(token)){
             token = httpRequest.getParameter("token");
         }
         return token;

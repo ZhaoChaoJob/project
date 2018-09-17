@@ -1,5 +1,8 @@
 package com.geotmt.admin.model.jpa;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,6 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="T_TABLE")
+@Getter
+@Setter
 public class TTable {
     @Id()
     @Column(name = "T_ID", columnDefinition = "NUMERIC(18)", nullable = false)
@@ -24,28 +29,4 @@ public class TTable {
     private Long tDate;
     @Column(name = "T_TXT", columnDefinition = "NUMERIC(3)", nullable = false)
     private Long tTxt;
-
-    public Long gettId() {
-        return tId;
-    }
-
-    public void settId(Long tId) {
-        this.tId = tId;
-    }
-
-    public Long gettDate() {
-        return tDate;
-    }
-
-    public void settDate(Long tDate) {
-        this.tDate = tDate;
-    }
-
-    public Long gettTxt() {
-        return tTxt;
-    }
-
-    public void settTxt(Long tTxt) {
-        this.tTxt = tTxt;
-    }
 }
