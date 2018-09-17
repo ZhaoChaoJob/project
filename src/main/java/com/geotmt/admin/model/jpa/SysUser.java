@@ -1,5 +1,8 @@
 package com.geotmt.admin.model.jpa;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,6 +11,8 @@ import java.util.List;
 //用户表
 @Entity
 @Table(name = "sys_user")
+@Getter
+@Setter
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,92 +65,4 @@ public class SysUser implements Serializable {
 	@JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns = { @JoinColumn(name = "roleId") })
 	private List<SysRole> roleList;// 一个用户具有多个角色
 
-	public long getUid() {
-		return uid;
-	}
-
-	public void setUid(long uid) {
-		this.uid = uid;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Date getLastLoginTime() {
-		return lastLoginTime;
-	}
-
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
-
-	public byte getStatus() {
-		return status;
-	}
-
-	public void setStatus(byte status) {
-		this.status = status;
-	}
-
-	public long getCreateNameId() {
-		return createNameId;
-	}
-
-	public void setCreateNameId(long createNameId) {
-		this.createNameId = createNameId;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public long getLastUpdateNameId() {
-		return lastUpdateNameId;
-	}
-
-	public void setLastUpdateNameId(long lastUpdateNameId) {
-		this.lastUpdateNameId = lastUpdateNameId;
-	}
-
-	public Date getLastUpdateTime() {
-		return lastUpdateTime;
-	}
-
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
-	}
-
-	public List<SysRole> getRoleList() {
-		return roleList;
-	}
-
-	public void setRoleList(List<SysRole> roleList) {
-		this.roleList = roleList;
-	}
-	
 }

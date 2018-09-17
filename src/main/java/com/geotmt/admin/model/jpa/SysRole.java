@@ -1,5 +1,7 @@
 package com.geotmt.admin.model.jpa;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "sys_role")
+@Getter
+@Setter
 public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,45 +42,4 @@ public class SysRole implements Serializable {
 	@Fetch(FetchMode.SUBSELECT)
 	private List<SysUser> sysUser;
 
-	public long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public List<SysPermission> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(List<SysPermission> permissions) {
-		this.permissions = permissions;
-	}
-
-	public List<SysUser> getSysUser() {
-		return sysUser;
-	}
-
-	public void setSysUser(List<SysUser> sysUser) {
-		this.sysUser = sysUser;
-	}
-	
-	
 }
