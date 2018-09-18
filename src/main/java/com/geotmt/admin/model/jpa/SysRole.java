@@ -35,7 +35,7 @@ public class SysRole implements Serializable {
 	@JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="permissionId")})
 	@Fetch(FetchMode.SUBSELECT)
 	private List<SysPermission> permissions;
-	
+
 	/**用户 - 角色关系定义*/
 	@ManyToMany(fetch= FetchType.EAGER)
 	@JoinTable(name="SysUserRole",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="uid")})
