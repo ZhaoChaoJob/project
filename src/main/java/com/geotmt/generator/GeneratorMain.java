@@ -36,6 +36,7 @@ public class GeneratorMain {
 	//  g.printAllTableNames() ;//这个方法用不了，因为我不知到catalog这个属性怎么配置
 		
 		//打开文件夹
-		Runtime.getRuntime().exec("cmd.exe /c start E:/");
+		String path = GeneratorProperties.getProperty("outRoot");
+		Runtime.getRuntime().exec("cmd.exe /c start " + path);
 	}
 }
