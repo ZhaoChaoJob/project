@@ -63,6 +63,25 @@ public class ShiroConfig {
         // 权限控制map
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
+        /*
+            权限拦截
+            /app/o/*    -- 手机开放路径
+            /app/u/*    -- 手机普通用户路径
+            /app/m/*    -- 手机管理员路径
+
+            /api/o/*    -- API开放路径
+            /api/u/*    -- API普通用户路径
+            /api/m/*    -- API管理员路径
+
+            /web/o/*    -- 网站开放路径
+            /web/u/*    -- 网站普通用户路径
+            /web/m/*    -- 网站管理员路径
+
+            /com/o/*    -- 通用开放接口
+            /com/u/*    -- 通用普通用户接口
+            /com/m/*    -- 通用管理员接口
+            /
+         */
         filterChainDefinitionMap.put("/js/*.js", "anon"); // 放行
         filterChainDefinitionMap.put("/plugins/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
@@ -70,7 +89,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/jsplug/**", "anon");
         filterChainDefinitionMap.put("/ajaxLogin", "anon");
         filterChainDefinitionMap.put("/listUser", "anon");
-        filterChainDefinitionMap.put("/test", "anon");
+        filterChainDefinitionMap.put("/app/o/*", "anon");
+        filterChainDefinitionMap.put("/api/o/*", "anon");
+        filterChainDefinitionMap.put("/web/o/*", "anon");
+        filterChainDefinitionMap.put("/com/o/*", "anon");
 
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
