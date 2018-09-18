@@ -142,77 +142,77 @@ public class ShiroConfig {
 
 // =========== 建表语句 ==========
 /*
+-- 用户信息表
+-- drop table if exists t_sys_user;
 create table t_sys_user (
-  uid bigint(20) not null auto_increment,
-  create_name_id bigint(20) default null,
-  create_time date default null,
-  email varchar(50) collate utf8_bin default null,
-  last_login_time datetime default null,
-  last_update_name_id bigint(20) default null,
-  last_update_time date default null,
-  nickname varchar(120) collate utf8_bin default null,
-  password varchar(120) collate utf8_bin default null,
-  status tinyint(4) default null,
-  createnameid bigint(20) default null,
-  createtime date default null,
-  lastlogintime datetime default null,
-  lastupdatenameid bigint(20) default null,
-  lastupdatetime date default null,
-  primary key (uid)
-) engine=innodb auto_increment=2 default charset=utf8 collate=utf8_bin;
+  `uid` 					numeric(20) 	not null 	comment '用户id' 		,
+  `create_name_id` 			numeric(20) 				comment '创建人id' 		,
+  `create_time` 			numeric(14) 				comment '创建时间' 		,
+  `email` 					varchar(50) 				comment '邮箱|登录帐号' ,
+  `last_login_time` 		numeric(14) 				comment '最后登录时间' 	,
+  `last_update_name_id` 	numeric(20) 				comment '最后修改人id' 	,
+  `last_update_time`		numeric(14) 				comment '最后修改时间' 	,
+  `nickname` 				varchar(120) 				comment '用户昵称' 		,
+  `password` 				varchar(120) 				comment '密码' 			,
+  `status` 					numeric(4) 					comment '用户状态,0:创建未认证, 1:正常状态,2：用户被锁定'
+) engine=innodb comment '用户信息表' ;
+alter table t_sys_user add primary key (uid) ;
+create index ix_sys_user_email on t_sys_user (email) ;
 
+-- 用户角色表
+-- drop table if exists t_sys_role;
 create table t_sys_role (
-  role_id bigint(20) not null auto_increment,
-  description varchar(200) collate utf8_bin default null,
-  role_name varchar(100) collate utf8_bin default null,
-  roleid bigint(20) not null,
-  rolename varchar(100) collate utf8_bin default null,
-  primary key (role_id)
-) engine=innodb default charset=utf8 collate=utf8_bin;
+  `role_id` 		numeric(20) 	not null 	comment '角色id' 					,
+  `description` 	varchar(200)  				comment '角色描述,UI界面显示使用' 	,
+  `role_name` 		varchar(100)  				comment '角色名称'
+) engine=innodb comment '用户角色表' ;
+alter table t_sys_role add primary key (role_id) ;
 
+-- 用户权限表
+-- drop table if exists t_sys_permission;
 create table t_sys_permission (
-  permission_id bigint(20) not null auto_increment,
-  available bit(1) default null,
-  name varchar(255) collate utf8_bin default null,
-  parent_id bigint(20) default null,
-  parent_ids varchar(255) collate utf8_bin default null,
-  permission_str varchar(255) collate utf8_bin default null,
-  resource_type enum('menu','button') collate utf8_bin default null,
-  url varchar(255) collate utf8_bin default null,
-  permissionid bigint(20) not null,
-  parentid bigint(20) default null,
-  parentids varchar(255) collate utf8_bin default null,
-  permissionstr varchar(255) collate utf8_bin default null,
-  resourcetype enum('menu','button') collate utf8_bin default null,
-  primary key (permission_id)
-) engine=innodb default charset=utf8 collate=utf8_bin;
+  `permission_id` 	numeric(20) not null 	comment '权限id' 		,
+  `available` 		numeric(1) 				comment '' 				,
+  `name` 			varchar(255)  			comment '名称' 			,
+  `parent_id` 		numeric(20) 			comment '父编号' 		,
+  `parent_ids` 		varchar(255)  			comment '父编号列表' 	,
+  `permission_str` 	varchar(255)  			comment '权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view' ,
+  `resource_type` 	enum('menu','button')  	comment '资源类型，[menu|button]' ,
+  `url` 				varchar(255)   			comment '资源路径'
+) engine=innodb comment '用户权限表' ;
+alter table t_sys_permission add primary key (permission_id) ;
 
+-- 角色&权限关联表
+-- drop table if exists t_sys_role_permission;
 create table t_sys_role_permission (
-  role_id bigint(20) not null,
-  permission_id bigint(20) not null,
-  key fkomxrs8a388bknvhjokh440waq (permission_id),
-  key fk9q28ewrhntqeipl1t04kh1be7 (role_id),
-  constraint fk9q28ewrhntqeipl1t04kh1be7 foreign key (role_id) references t_sys_role (role_id),
-  constraint fkomxrs8a388bknvhjokh440waq foreign key (permission_id) references t_sys_permission (permission_id)
-) engine=innodb default charset=utf8 collate=utf8_bin;
+  `role_id` 			numeric(20) not null 	comment '角色ID' ,
+  `permission_id` 		numeric(20) not null	comment '权限ID'
+) engine=innodb comment '角色&权限关联表' ;
+alter table t_sys_role_permission add foreign key(role_id) references t_sys_role(role_id);
+alter table t_sys_role_permission add foreign key(permission_id) references t_sys_permission(permission_id);
 
+
+-- 用户&角色关联表
+-- drop table if exists t_sys_user_role;
 create table t_sys_user_role (
-  uid bigint(20) not null,
-  role_id bigint(20) not null,
-  key fkhh52n8vd4ny9ff4x9fb8v65qx (role_id),
-  key fkput17v9wwg8wiukw8ykroaaag (uid),
-  constraint fkhh52n8vd4ny9ff4x9fb8v65qx foreign key (role_id) references t_sys_role (role_id),
-  constraint fkput17v9wwg8wiukw8ykroaaag foreign key (uid) references t_sys_user (uid)
-) engine=innodb default charset=utf8 collate=utf8_bin;
+  `uid` 				numeric(20) not null	comment '用户ID' ,
+  `role_id` 			numeric(20) not null	comment '角色ID'
+) engine=innodb comment '用户&角色关联表' ;
+alter table t_sys_user_role add foreign key(role_id) references t_sys_user(uid);
+alter table t_sys_user_role add foreign key(role_id) references t_sys_role(role_id);
 
+-- 用户Token表，主要用户Api调用
+-- drop table if exists t_sys_token;
 create table t_sys_token (
-  token_id bigint(20) not null,
-  user_id bigint(20) default null,
-  username varchar(20) collate utf8_bin default null,
-  password varchar(32) collate utf8_bin default null,
-  insert_time bigint(14) default null,
-  invalid_time bigint(14) default null,
-  status int(1) default null,
-  primary key (token_id)
-) engine=innodb default charset=utf8 collate=utf8_bin;
+  `token_id` 			numeric(20) not null	comment '令牌ID' 	,
+  `user_id` 			numeric(20) 			comment '用户ID' 	,
+  `user_code`			varchar(20)  			comment '账号' 		,
+  `password` 			varchar(32)  			comment '密码' 		,
+  `insert_time` 		numeric(14) 			comment '插入时间' 	,
+  `invalid_time` 		numeric(14) 			comment '失效时间' 	,
+  `status` 				numeric(1) 				comment '令牌状态'
+) engine=innodb comment '用户Token表，主要用户Api调用' ;
+alter table t_sys_token add primary key (token_id) ;
+
+
 */

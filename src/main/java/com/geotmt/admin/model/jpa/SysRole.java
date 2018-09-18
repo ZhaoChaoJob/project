@@ -19,11 +19,11 @@ public class SysRole implements Serializable {
     
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "roleId", unique = true, nullable = false)
+	@Column(name = "role_id", unique = true, nullable = false)
 	private long roleId;
 	
     /**角色名称*/
-	@Column(name="roleName",length=100)
+	@Column(name="role_name",length=100)
 	private String roleName;
 	
 	/**角色描述,UI界面显示使用*/
