@@ -142,67 +142,77 @@ public class ShiroConfig {
 
 // =========== 建表语句 ==========
 /*
-CREATE TABLE `t_sys_user` (
-  `uid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `create_name_id` bigint(20) DEFAULT NULL,
-  `create_time` date DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `last_login_time` datetime DEFAULT NULL,
-  `last_update_name_id` bigint(20) DEFAULT NULL,
-  `last_update_time` date DEFAULT NULL,
-  `nickname` varchar(120) COLLATE utf8_bin DEFAULT NULL,
-  `password` varchar(120) COLLATE utf8_bin DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  `createNameId` bigint(20) DEFAULT NULL,
-  `createTime` date DEFAULT NULL,
-  `lastLoginTime` datetime DEFAULT NULL,
-  `lastUpdateNameId` bigint(20) DEFAULT NULL,
-  `lastUpdateTime` date DEFAULT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+create table t_sys_user (
+  uid bigint(20) not null auto_increment,
+  create_name_id bigint(20) default null,
+  create_time date default null,
+  email varchar(50) collate utf8_bin default null,
+  last_login_time datetime default null,
+  last_update_name_id bigint(20) default null,
+  last_update_time date default null,
+  nickname varchar(120) collate utf8_bin default null,
+  password varchar(120) collate utf8_bin default null,
+  status tinyint(4) default null,
+  createnameid bigint(20) default null,
+  createtime date default null,
+  lastlogintime datetime default null,
+  lastupdatenameid bigint(20) default null,
+  lastupdatetime date default null,
+  primary key (uid)
+) engine=innodb auto_increment=2 default charset=utf8 collate=utf8_bin;
 
-CREATE TABLE `t_sys_role` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `description` varchar(200) COLLATE utf8_bin DEFAULT NULL,
-  `role_name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `roleId` bigint(20) NOT NULL,
-  `roleName` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+create table t_sys_role (
+  role_id bigint(20) not null auto_increment,
+  description varchar(200) collate utf8_bin default null,
+  role_name varchar(100) collate utf8_bin default null,
+  roleid bigint(20) not null,
+  rolename varchar(100) collate utf8_bin default null,
+  primary key (role_id)
+) engine=innodb default charset=utf8 collate=utf8_bin;
 
-CREATE TABLE `t_sys_permission` (
-  `permission_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `available` bit(1) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `parent_id` bigint(20) DEFAULT NULL,
-  `parent_ids` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `permission_str` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `resource_type` enum('menu','button') COLLATE utf8_bin DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `permissionId` bigint(20) NOT NULL,
-  `parentId` bigint(20) DEFAULT NULL,
-  `parentIds` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `permissionStr` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `resourceType` enum('menu','button') COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+create table t_sys_permission (
+  permission_id bigint(20) not null auto_increment,
+  available bit(1) default null,
+  name varchar(255) collate utf8_bin default null,
+  parent_id bigint(20) default null,
+  parent_ids varchar(255) collate utf8_bin default null,
+  permission_str varchar(255) collate utf8_bin default null,
+  resource_type enum('menu','button') collate utf8_bin default null,
+  url varchar(255) collate utf8_bin default null,
+  permissionid bigint(20) not null,
+  parentid bigint(20) default null,
+  parentids varchar(255) collate utf8_bin default null,
+  permissionstr varchar(255) collate utf8_bin default null,
+  resourcetype enum('menu','button') collate utf8_bin default null,
+  primary key (permission_id)
+) engine=innodb default charset=utf8 collate=utf8_bin;
 
-CREATE TABLE `t_sys_role_permission` (
-  `role_id` bigint(20) NOT NULL,
-  `permission_id` bigint(20) NOT NULL,
-  KEY `FKomxrs8a388bknvhjokh440waq` (`permission_id`),
-  KEY `FK9q28ewrhntqeipl1t04kh1be7` (`role_id`),
-  CONSTRAINT `FK9q28ewrhntqeipl1t04kh1be7` FOREIGN KEY (`role_id`) REFERENCES `t_sys_role` (`role_id`),
-  CONSTRAINT `FKomxrs8a388bknvhjokh440waq` FOREIGN KEY (`permission_id`) REFERENCES `t_sys_permission` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+create table t_sys_role_permission (
+  role_id bigint(20) not null,
+  permission_id bigint(20) not null,
+  key fkomxrs8a388bknvhjokh440waq (permission_id),
+  key fk9q28ewrhntqeipl1t04kh1be7 (role_id),
+  constraint fk9q28ewrhntqeipl1t04kh1be7 foreign key (role_id) references t_sys_role (role_id),
+  constraint fkomxrs8a388bknvhjokh440waq foreign key (permission_id) references t_sys_permission (permission_id)
+) engine=innodb default charset=utf8 collate=utf8_bin;
 
-CREATE TABLE `t_sys_user_role` (
-  `uid` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
-  KEY `FKhh52n8vd4ny9ff4x9fb8v65qx` (`role_id`),
-  KEY `FKput17v9wwg8wiukw8ykroaaag` (`uid`),
-  CONSTRAINT `FKhh52n8vd4ny9ff4x9fb8v65qx` FOREIGN KEY (`role_id`) REFERENCES `t_sys_role` (`role_id`),
-  CONSTRAINT `FKput17v9wwg8wiukw8ykroaaag` FOREIGN KEY (`uid`) REFERENCES `t_sys_user` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+create table t_sys_user_role (
+  uid bigint(20) not null,
+  role_id bigint(20) not null,
+  key fkhh52n8vd4ny9ff4x9fb8v65qx (role_id),
+  key fkput17v9wwg8wiukw8ykroaaag (uid),
+  constraint fkhh52n8vd4ny9ff4x9fb8v65qx foreign key (role_id) references t_sys_role (role_id),
+  constraint fkput17v9wwg8wiukw8ykroaaag foreign key (uid) references t_sys_user (uid)
+) engine=innodb default charset=utf8 collate=utf8_bin;
 
+create table t_sys_token (
+  token_id bigint(20) not null,
+  user_id bigint(20) default null,
+  username varchar(20) collate utf8_bin default null,
+  password varchar(32) collate utf8_bin default null,
+  insert_time bigint(14) default null,
+  invalid_time bigint(14) default null,
+  status int(1) default null,
+  primary key (token_id)
+) engine=innodb default charset=utf8 collate=utf8_bin;
 */
