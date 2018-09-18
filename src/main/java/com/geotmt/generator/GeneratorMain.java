@@ -4,6 +4,16 @@ package com.geotmt.generator;
  * 
  * @author badQiu
  *
+ * 如果想独立出去成为一个单独的模块，请自行加入以下jar包
+ * commons-beanutils.jar
+ * commons-cli-1.0.jar
+ * commons-io.jar
+ * commons-logging-1.1.jar
+ * freemarker.jar
+ * mysql-connector-java-5.0.5-bin.jar
+ * ojdbc14.jar -- 这里尽量使用ojdbc6.jar ojdbc14.jar 指的是支持jdk1.0 - jdk1.4
+ * sqljdbc.jar
+ *
  */
 
 
