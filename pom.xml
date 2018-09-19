@@ -143,6 +143,13 @@
 			<version>4.5.5</version>
 		</dependency>
 		<!-- http client end-->
+		<!-- 拼音begin -->
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<!-- 拼音end -->
 	</dependencies>
 
 	<build>
