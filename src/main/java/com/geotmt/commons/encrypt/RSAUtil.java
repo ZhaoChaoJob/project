@@ -215,57 +215,57 @@ public class RSAUtil {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        // 生产密钥
-        Map<String, Object> keys = RSAUtil.initKey();
-
-        // 打印私钥
-        System.out.println("↓↓↓↓↓the following is private key↓↓↓↓↓");
-        System.out.println("-----BEGIN PRIVATE KEY-----");
-        System.out.println(RSAUtil.getPrivateKey(keys));
-        System.out.println("-----END PRIVATE KEY-----");
-        System.out.println("↑↑↑↑↑the above is private key↑↑↑↑↑");
-
-        System.out.println();
-
-        // 打印公钥
-        System.out.println("↓↓↓↓↓the following is public key↓↓↓↓↓");
-        System.out.println("-----BEGIN PUBLIC KEY-----");
-        System.out.println(RSAUtil.getPublicKey(keys));
-        System.out.println("-----END PUBLIC KEY-----");
-        System.out.println("↑↑↑↑↑the above is public key↑↑↑↑↑");
-
-        // 加密样例：
-//        File file1 = new File("E:\\pub-key.txt");
-//        String pub = IOUtils.toString(new FileInputStream(file1));
-        String pub = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCxG9VEFQ5ar94W4uiv+OGwLbql24fOAH5MZkJi\n" +
-                "nv48zxLjdaIQEaL/pVUfgj8IGtaHL23FKeVXRzVUVD48zC2RcVtCyznDnHM1HZhx57OaYmWUBOgG\n" +
-                "Dica56Yj05zbCz9MNCBjluzxWdBS41OTg6EPb/mj7o+AMojQ6BhazFXlTQIDAQAB";
-        pub = pub.replace("-----BEGIN PUBLIC KEY-----" + IOUtils.LINE_SEPARATOR, "").replace("-----END PUBLIC KEY-----", "");
-        byte[] helloE = RSAUtil.encryptByPublicKey("hello".getBytes("UTF-8"), pub);
-        String helloBase64 = Coder.encryptBASE64(helloE);
-        System.out.println(helloBase64);
-
-
-//        // 解密样例
-        String naughty = "DuuB+ZcqSMTL2PVzOIaHtLDQ5t0r+S2twsAdNt7GNjD1AGVPpiiQz/fVfVJa9+j3IeWzAKTZ/cRyLTH8Wv5JTD6PTMWwiBvg+eGoQZzTi/b34U/Aiv/DovIzm8uMTM2iWk1Vz7KUJK0NMnlKIiviJneCyUVCMFLwT2OPH1QBxq4=";
-        byte[] naughtyBase64 = Coder.decryptBASE64(helloBase64);
-//        File file = new File("E:\\pri-key.txt");
-//        String priKey = IOUtils.toString(new FileInputStream(file));
-        String priKey = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALEb1UQVDlqv3hbi6K/44bAtuqXb\n" +
-                "h84AfkxmQmKe/jzPEuN1ohARov+lVR+CPwga1ocvbcUp5VdHNVRUPjzMLZFxW0LLOcOcczUdmHHn\n" +
-                "s5piZZQE6AYOJxrnpiPTnNsLP0w0IGOW7PFZ0FLjU5ODoQ9v+aPuj4AyiNDoGFrMVeVNAgMBAAEC\n" +
-                "gYEApFsh9IZdxcbDIRX9vaAHQMmPFm+9fWxzyE51eLP3V1MLQk5d0O+tBfTWI+FowQq23ski4v9Y\n" +
-                "N0B7uwBaqW0JMwpWBqJaLY9KwqEp8K/RRNa6YfmzQgV7qGicYaSEda6yimVF6tXGJU9EY3JdqGxz\n" +
-                "ZpeHr/8qDvk4+xZPAwWZNgECQQD2HFOGz/8wY5bketqMKuhRFmXFyGmq6/+ZknMFzjzwuUQk1uUo\n" +
-                "pzFWTf7MMglvkKCsRPZIQYuvqahg3JZnszBBAkEAuDmz32mKU+6b9XYuLVVFsgxTblaGvYnDAGdp\n" +
-                "gwQkV1JLefDFLFezyLTrx/3s7+PvqmGuhYW8ZWgtcHPSHN/yDQJACg2MJ+SVIu/eeQS/qpwSE0Xb\n" +
-                "8GFIV6/+J9LAmgsbmCWpL+wLPkbeEA1ti/+7PPBmb8L9YGQ1BX7jntlD14aNQQJBAIFh7STrz32Q\n" +
-                "57FllZq6957LL1EfrbOx6+T9u8mLACbfoih64094LMi535nuiRgVgj2sKtCVkzG5D6iZfyhOU4UC\n" +
-                "QBbgPS9BBIVgTRZ7ZBlPtSgK8IeZeau60SOkweF4x1+VqyfRe6AcyoQtiO9fiHUmFLkcNZmKj1ER\n" +
-                "omqH7/Xn9Xg=";
-        priKey = priKey.replace("-----BEGIN PRIVATE KEY-----" + IOUtils.LINE_SEPARATOR, "").replace("-----END PRIVATE KEY-----", "");
-        String decryptedNaughty = new String(RSAUtil.decryptByPrivateKey(naughtyBase64, priKey));
-        System.out.println(decryptedNaughty);
-    }
+//    public static void main(String[] args) throws Exception {
+//        // 生产密钥
+//        Map<String, Object> keys = RSAUtil.initKey();
+//
+//        // 打印私钥
+//        System.out.println("↓↓↓↓↓the following is private key↓↓↓↓↓");
+//        System.out.println("-----BEGIN PRIVATE KEY-----");
+//        System.out.println(RSAUtil.getPrivateKey(keys));
+//        System.out.println("-----END PRIVATE KEY-----");
+//        System.out.println("↑↑↑↑↑the above is private key↑↑↑↑↑");
+//
+//        System.out.println();
+//
+//        // 打印公钥
+//        System.out.println("↓↓↓↓↓the following is public key↓↓↓↓↓");
+//        System.out.println("-----BEGIN PUBLIC KEY-----");
+//        System.out.println(RSAUtil.getPublicKey(keys));
+//        System.out.println("-----END PUBLIC KEY-----");
+//        System.out.println("↑↑↑↑↑the above is public key↑↑↑↑↑");
+//
+//        // 加密样例：
+////        File file1 = new File("E:\\pub-key.txt");
+////        String pub = IOUtils.toString(new FileInputStream(file1));
+//        String pub = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCxG9VEFQ5ar94W4uiv+OGwLbql24fOAH5MZkJi\n" +
+//                "nv48zxLjdaIQEaL/pVUfgj8IGtaHL23FKeVXRzVUVD48zC2RcVtCyznDnHM1HZhx57OaYmWUBOgG\n" +
+//                "Dica56Yj05zbCz9MNCBjluzxWdBS41OTg6EPb/mj7o+AMojQ6BhazFXlTQIDAQAB";
+//        pub = pub.replace("-----BEGIN PUBLIC KEY-----" + IOUtils.LINE_SEPARATOR, "").replace("-----END PUBLIC KEY-----", "");
+//        byte[] helloE = RSAUtil.encryptByPublicKey("hello".getBytes("UTF-8"), pub);
+//        String helloBase64 = Coder.encryptBASE64(helloE);
+//        System.out.println(helloBase64);
+//
+//
+////        // 解密样例
+//        String naughty = "DuuB+ZcqSMTL2PVzOIaHtLDQ5t0r+S2twsAdNt7GNjD1AGVPpiiQz/fVfVJa9+j3IeWzAKTZ/cRyLTH8Wv5JTD6PTMWwiBvg+eGoQZzTi/b34U/Aiv/DovIzm8uMTM2iWk1Vz7KUJK0NMnlKIiviJneCyUVCMFLwT2OPH1QBxq4=";
+//        byte[] naughtyBase64 = Coder.decryptBASE64(helloBase64);
+////        File file = new File("E:\\pri-key.txt");
+////        String priKey = IOUtils.toString(new FileInputStream(file));
+//        String priKey = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALEb1UQVDlqv3hbi6K/44bAtuqXb\n" +
+//                "h84AfkxmQmKe/jzPEuN1ohARov+lVR+CPwga1ocvbcUp5VdHNVRUPjzMLZFxW0LLOcOcczUdmHHn\n" +
+//                "s5piZZQE6AYOJxrnpiPTnNsLP0w0IGOW7PFZ0FLjU5ODoQ9v+aPuj4AyiNDoGFrMVeVNAgMBAAEC\n" +
+//                "gYEApFsh9IZdxcbDIRX9vaAHQMmPFm+9fWxzyE51eLP3V1MLQk5d0O+tBfTWI+FowQq23ski4v9Y\n" +
+//                "N0B7uwBaqW0JMwpWBqJaLY9KwqEp8K/RRNa6YfmzQgV7qGicYaSEda6yimVF6tXGJU9EY3JdqGxz\n" +
+//                "ZpeHr/8qDvk4+xZPAwWZNgECQQD2HFOGz/8wY5bketqMKuhRFmXFyGmq6/+ZknMFzjzwuUQk1uUo\n" +
+//                "pzFWTf7MMglvkKCsRPZIQYuvqahg3JZnszBBAkEAuDmz32mKU+6b9XYuLVVFsgxTblaGvYnDAGdp\n" +
+//                "gwQkV1JLefDFLFezyLTrx/3s7+PvqmGuhYW8ZWgtcHPSHN/yDQJACg2MJ+SVIu/eeQS/qpwSE0Xb\n" +
+//                "8GFIV6/+J9LAmgsbmCWpL+wLPkbeEA1ti/+7PPBmb8L9YGQ1BX7jntlD14aNQQJBAIFh7STrz32Q\n" +
+//                "57FllZq6957LL1EfrbOx6+T9u8mLACbfoih64094LMi535nuiRgVgj2sKtCVkzG5D6iZfyhOU4UC\n" +
+//                "QBbgPS9BBIVgTRZ7ZBlPtSgK8IeZeau60SOkweF4x1+VqyfRe6AcyoQtiO9fiHUmFLkcNZmKj1ER\n" +
+//                "omqH7/Xn9Xg=";
+//        priKey = priKey.replace("-----BEGIN PRIVATE KEY-----" + IOUtils.LINE_SEPARATOR, "").replace("-----END PRIVATE KEY-----", "");
+//        String decryptedNaughty = new String(RSAUtil.decryptByPrivateKey(naughtyBase64, priKey));
+//        System.out.println(decryptedNaughty);
+//    }
 }
