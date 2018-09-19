@@ -1,4 +1,4 @@
-package com.geotmt.commons.Entity;
+package com.geotmt.commons.entity;
 
 import org.apache.shiro.authc.HostAuthenticationToken;
 import org.apache.shiro.authc.RememberMeAuthenticationToken;
