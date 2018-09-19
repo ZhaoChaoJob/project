@@ -1,10 +1,6 @@
-package com.geotmt.commons.encrypt;
-
-import org.apache.commons.io.IOUtils;
+package com.geotmt.commons.utils.encrypt;
 
 import javax.crypto.Cipher;
-import java.io.File;
-import java.io.FileInputStream;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;

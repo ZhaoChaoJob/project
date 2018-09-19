@@ -1,4 +1,4 @@
-package com.geotmt.commons.encrypt;
+package com.geotmt.commons.utils.encrypt;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
