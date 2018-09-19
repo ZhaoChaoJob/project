@@ -4,10 +4,6 @@ import java.security.MessageDigest;
 
 /**
  * MD5加密组件
- *
- * @author wbw
- * @version 1.0
- * @since 1.0
  */
 public class MD5Util {
 
