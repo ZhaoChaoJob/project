@@ -70,22 +70,17 @@ public class HttpUtil {
 	}
 	/**
 	 * 使用完立马回收避免内存泄漏或者因为线程池原因造成别的线程读到上个线程的值
-	 * @return
+	 * @return Integer
 	 */
 	public static Integer getHttpState(){
-		Integer state = httpState.get();
 		/// httpState.remove();
-		return state ;
+		return httpState.get();
 	}
 	public static CookieStore getHttpCookieStore(){
-		CookieStore cookieStore = httpCookieStore.get() ;
-		// httpCookieStore.remove();
-		return cookieStore ;
+		return httpCookieStore.get() ;
 	}
 	public static String getHttpCookieString(){
-		String cookies = httpCookieString.get() ;
-		// httpCookieString.remove();
-		return cookies ;
+		return httpCookieString.get() ;
 	}
 	
 	
@@ -98,8 +93,7 @@ public class HttpUtil {
 		List<String> cookieList = url_con.getHeaderFields().get("Set-Cookie"); // 响应cookie头
 		if(cookieList != null){
 			for(String cookie : cookieList){
-				//cookieSb.append(cookie).append(";") ;
-				
+
 				if(cookie!=null&&!"".equals(cookie)){
 					int p = cookie.indexOf("=");
 					if(p>0){
