@@ -11,6 +11,8 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  * @Description
  * @Author HealerJean
  * @Date 2018/3/22  下午3:45.
+ *
+ * 參考：https://github.com/tjfy1992/SpringBootQuartz
  */
 @Configuration
 public class QuartzConfig {
