@@ -24,6 +24,8 @@
 		<java.version>1.8</java.version>
 		<guava.version>17.0</guava.version>
 		<commons.lang.version>2.6</commons.lang.version>
+		<poi.version>3.17</poi.version>
+		<fastjson.version>1.1.15</fastjson.version>
 	</properties>
 
 	<dependencies>
@@ -159,6 +161,39 @@
 			<artifactId>spring-boot-starter-quartz</artifactId>
 		</dependency>
 		<!-- quartz end-->
+
+		<!-- 切片 begin -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- 切片 end -->
+
+		<!-- poi begin -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<!-- poi end-->
+
+		<!-- fastjson begin -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<!-- fastjson end -->
 	</dependencies>
 
 	<!-- 根据不同的profiles 对应不同的环境 begin -->
