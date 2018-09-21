@@ -1,5 +1,6 @@
 package com.geotmt.admin.controller;
 
+import com.geotmt.commons.aspect.SysLog;
 import com.geotmt.commons.quartz.job.HelloJoTwo;
 import com.geotmt.commons.quartz.job.HelloJobOne;
 import com.geotmt.commons.quartz.service.QuartzService;
@@ -16,6 +17,7 @@ public class QuartzController {
     private QuartzService quartzService;
 
 
+    @SysLog("测试")
     @GetMapping("quartzStart")
     public String startNNoQuartz(){
         quartzService.startJob("0/1 * * * * ? ","job1","gropu1", HelloJobOne.class);
