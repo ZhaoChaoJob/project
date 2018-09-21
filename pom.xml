@@ -146,6 +146,19 @@
 			<version>2.5.1</version>
 		</dependency>
 		<!-- 拼音end -->
+
+		<!-- quartz begin-->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+		<!-- quartz end-->
 	</dependencies>
 
 	<!-- 根据不同的profiles 对应不同的环境 begin -->
