@@ -16,8 +16,16 @@ config ==> 配置管理 \
 generator ==> 代码生成器 \
 project ==> 业务包
 
+# 五、module划分
+1. Web结尾的是web项目
+2. App结尾的是服务先买
+3. Batch结尾的是批量项目
+4. Module结尾的是模块 \
+之后对接多家机构，可以使用module来进行管理
 
-# 五、参考资料
+
+
+# 参考资料
 https://github.com/zhuzhegithub/SpringBootUnity
 
 https://github.com/ityouknow/spring-boot-examples/tree/master/spring-boot-mybatis-annotation/src/main/java/com/neo/web
