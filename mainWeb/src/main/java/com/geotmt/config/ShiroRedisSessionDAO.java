@@ -1,7 +1,7 @@
 package com.geotmt.config;
 
+import com.geotmt.common.utils.RedisKeys;
 import com.geotmt.commons.RedisService;
-import com.geotmt.commons.utils.RedisKeys;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
