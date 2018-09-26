@@ -32,6 +32,7 @@ public class HelloController {
      */
     @RequestMapping("/test")
     @ResponseBody
+//    aa:test
     String test() {
         return "欢迎进入权限模块，请浏览 com.geotmt.admin.controller 包。";
     }

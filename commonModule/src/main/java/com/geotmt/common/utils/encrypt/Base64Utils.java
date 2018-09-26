@@ -23,8 +23,18 @@ public class Base64Utils {
      * @param source
      * @return
      */
-    public static String decodeToByte(String source) {
+    public static String decodeToString(String source) {
         return new String(new Base64().decode(source.getBytes()));
+    }
+
+    /**
+     *  解密
+     *  将字符串解密为String类型
+     * @param source
+     * @return
+     */
+    public static byte[] decodeToByte(String source) {
+        return new Base64().decode(source.getBytes());
     }
 
     /**

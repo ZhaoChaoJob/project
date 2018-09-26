@@ -3,11 +3,12 @@ package com.geotmt.config;
 import com.geotmt.common.utils.RedisKeys;
 import com.geotmt.commons.RedisService;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
+import java.io.*;
 
 /**
  * shiro session dao
@@ -57,17 +58,43 @@ public class ShiroRedisSessionDAO extends EnterpriseCacheSessionDAO {
     }
 
     private Session getShiroSession(String key) {
-        Boolean flag = redisService == null ;
         Object session = redisService.get(key);
         if(session == null){
             return null;
         }else {
-            return (Session)session;
+            return byteToSession((byte[])session);
         }
     }
 
     private void setShiroSession(String key, Session session){
-        redisService.set(key, session,60 * 1000L);
+        redisService.set(key, sessionToByte(session),60 * 1000L);
+    }
+    // 把session对象转化为byte保存到redis中
+    private byte[] sessionToByte(Session session){
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        byte[] bytes = null;
+        try {
+            ObjectOutputStream oo = new ObjectOutputStream(bo);
+            oo.writeObject(session);
+            bytes = bo.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
     }
 
+    // 把byte还原为session
+    private Session byteToSession(byte[] bytes){
+        ByteArrayInputStream bi = new ByteArrayInputStream(bytes);
+        ObjectInputStream in;
+        SimpleSession session = null;
+        try {
+            in = new ObjectInputStream(bi);
+            session = (SimpleSession) in.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return session;
+    }
 }
