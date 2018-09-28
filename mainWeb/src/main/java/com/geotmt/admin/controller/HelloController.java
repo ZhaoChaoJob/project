@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 测试
  *
  * Created by choa.zhao on 2018/9/12. */
-@RestController
+@Controller
 public class HelloController {
 
     @Autowired
@@ -97,6 +97,12 @@ public class HelloController {
     @RequestMapping("/dubbo")
     @ResponseBody
     String login(String username){
-        return userService.login(username);
+
+        try{
+            return userService.login(username);
+        }catch (Exception e){
+            return e.getMessage();
+        }
+
     }
 }
