@@ -57,7 +57,7 @@ public class ShiroConfig {
 
         //自定义拦截器
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
-        filtersMap.put("auth3",new ShiroFilter());
+        filtersMap.put("auth3",new ShiroTokenFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         // 权限控制map
@@ -105,7 +105,7 @@ public class ShiroConfig {
         List<SysPermission> list = systemService.getPermisAll();
 
         for (SysPermission sysPerm : list) {
-//            filterChainDefinitionMap.put(sysPerm.getUrl(), "authc"/*sysPerm.getPermissionStr()*/);
+            filterChainDefinitionMap.put(sysPerm.getUrl(), "authc");
         }
         filterChainDefinitionMap.put("/jpa", "auth3"); // 搜身检查
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

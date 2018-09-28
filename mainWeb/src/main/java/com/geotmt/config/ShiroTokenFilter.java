@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Shiro 过滤器
  */
-public class ShiroFilter  extends AuthenticatingFilter {
+public class ShiroTokenFilter extends AuthenticatingFilter {
 
     @Override
     protected UsernamePasswordExtToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
