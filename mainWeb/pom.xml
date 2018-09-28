@@ -184,7 +184,13 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
         <!-- 添加log4j2依赖 end -->
-
+        <!--dubbo-springBoot依赖 begin -->
+        <dependency>
+            <groupId>com.alibaba.spring.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>${dubbo-spring-boot-starter.version}</version>
+        </dependency>
+        <!--dubbo-springBoot依赖 end -->
         <!-- 内部模块 begin -->
         <dependency>
             <groupId>com.geotmt</groupId>
@@ -197,6 +203,16 @@
             <version>${commonModule.version}</version>
         </dependency>
         <!-- 内部模块 end -->
+        <dependency>
+            <groupId>com.geotmt</groupId>
+            <artifactId>dubboApiModule</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>${zkclient.version}</version>
+        </dependency>
     </dependencies>
 
     <!-- 根据不同的profiles 对应不同的环境 begin -->

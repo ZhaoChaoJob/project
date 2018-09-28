@@ -4,17 +4,19 @@ import com.geotmt.admin.dao.TTableMyBatisDao;
 import com.geotmt.admin.model.mongodb.Persion;
 import com.geotmt.admin.service.TTableService;
 import com.geotmt.commons.RedisService;
+import com.geotmt.demo.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试
  *
  * Created by choa.zhao on 2018/9/12. */
-@Controller
+@RestController
 public class HelloController {
 
     @Autowired
@@ -25,6 +27,8 @@ public class HelloController {
     private TTableMyBatisDao myBatisDao ;
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Autowired(required = false)
+    private UserService userService; // 在找不到匹配 Bean 时也不报错
 
     /**
      * 测试mvc
@@ -83,5 +87,16 @@ public class HelloController {
         persion.setName("大老张");
         this.mongoTemplate.save(persion);
         return this.mongoTemplate.findById("123",Persion.class);
+    }
+
+    /**
+     * 测试mongodb
+     *
+     * @return 对象信息
+     */
+    @RequestMapping("/dubbo")
+    @ResponseBody
+    String login(String username){
+        return userService.login(username);
     }
 }

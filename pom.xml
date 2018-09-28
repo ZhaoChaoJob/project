@@ -17,6 +17,8 @@
         <module>rong360Module</module>
 		<module>mainWeb</module>
 		<module>commonModule</module>
+		<module>rong360Provider</module>
+		<module>dubboApiModule</module>
 	</modules>
     <packaging>pom</packaging>
 
@@ -32,6 +34,7 @@
 		<commons.lang.version>2.6</commons.lang.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.6</commons-io.version>
+		<dubbo-spring-boot-starter.version>2.0.0</dubbo-spring-boot-starter.version>
 		<druid.version>1.1.6</druid.version>
 		<freemarker.version>2.3.28</freemarker.version>
 		<guava.version>17.0</guava.version>
@@ -46,6 +49,7 @@
 		<pinyin4j.version>2.5.1</pinyin4j.version>
 		<quartz-jobs.version>2.2.1</quartz-jobs.version>
 		<shiro.version>1.2.5</shiro.version>
+		<zkclient.version>0.10</zkclient.version>
 
 		<!-- 内部包 -->
 		<commonModule.version>0.0.1-SNAPSHOT</commonModule.version>
@@ -67,4 +71,12 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- 阿里爸爸的下载速度还是很给力的 -->
+	<!--<repositories>-->
+		<!--<repository>-->
+			<!--<id>aliyunmaven</id>-->
+			<!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+		<!--</repository>-->
+	<!--</repositories>-->
 </project>
