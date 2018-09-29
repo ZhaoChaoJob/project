@@ -2,6 +2,7 @@ package com.geotmt.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,12 +18,25 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket createRestApi() {
+    @Profile(value = {"dev","test"})
+    public Docket devCreateRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.geotmt.admin.controller"))
                 .paths(PathSelectors.any())
+                .build();
+    }
+
+    // 生产就关掉吧
+    @Bean
+    @Profile(value = {"pro"})
+    public Docket proCreateRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.geotmt.admin.controller"))
+                .paths(PathSelectors.none())
                 .build();
     }
 

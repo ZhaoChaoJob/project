@@ -23,7 +23,7 @@ import java.util.Map;
  * https://blog.csdn.net/ysk_xh_521/article/details/80633141
  *
  * Created by choa.zhao on 2018/9/12. */
-@Api(value="/", tags="系统框架测试接口")
+@Api(value="/根目录", tags="系统框架测试接口")
 @Controller
 public class HelloController {
 
