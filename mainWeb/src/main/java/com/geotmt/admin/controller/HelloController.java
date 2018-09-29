@@ -1,9 +1,9 @@
 package com.geotmt.admin.controller;
 
 import com.geotmt.admin.dao.TTableMyBatisDao;
-import com.geotmt.admin.model.mongodb.Persion;
 import com.geotmt.admin.service.TTableService;
 import com.geotmt.commons.RedisService;
+import com.geotmt.db.mongo.bo.Persion2;
 import com.geotmt.demo.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -83,11 +83,11 @@ public class HelloController {
     @RequestMapping("/mongo")
     @ResponseBody
     Object testMongo() {
-        Persion persion = new Persion() ;
+        Persion2 persion = new Persion2() ;
         persion.set_id("123");
         persion.setName("大老张");
         this.mongoTemplate.save(persion);
-        return this.mongoTemplate.findById("123",Persion.class);
+        return this.mongoTemplate.findById("123",Persion2.class);
     }
 
     /**
