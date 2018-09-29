@@ -27,6 +27,7 @@ project ==> 业务包
 ### 3.mainWeb web主体
 - 项目所有的配置都放这里
 - 权限体系放在这里
+- 访问Swagger：http://127.0.0.1:8080/swagger-ui.html
 
 ## 4.xxxModule
 - 分模块写业务逻辑，也是dubbo的消费者
