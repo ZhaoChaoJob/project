@@ -116,6 +116,6 @@ public class HelloController {
     @RequestMapping("/list")
     @ResponseBody
     public Map<String, Object> list(int pageNo, int pageSize){
-        return helpTopicService.listHelpTopics(pageNo, pageSize);
+        return tTableService.listHelpTopics(pageNo, pageSize);
     }
 }

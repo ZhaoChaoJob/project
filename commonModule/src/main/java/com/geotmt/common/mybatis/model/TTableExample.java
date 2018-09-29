@@ -3,14 +3,14 @@ package com.geotmt.common.mybatis.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelpTopicExample {
+public class TTableExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public HelpTopicExample() {
+    public TTableExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,193 +104,183 @@ public class HelpTopicExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andHelpTopicIdIsNull() {
-            addCriterion("help_topic_id is null");
+        public Criteria andTIdIsNull() {
+            addCriterion("T_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdIsNotNull() {
-            addCriterion("help_topic_id is not null");
+        public Criteria andTIdIsNotNull() {
+            addCriterion("T_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdEqualTo(Integer value) {
-            addCriterion("help_topic_id =", value, "helpTopicId");
+        public Criteria andTIdEqualTo(Long value) {
+            addCriterion("T_ID =", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdNotEqualTo(Integer value) {
-            addCriterion("help_topic_id <>", value, "helpTopicId");
+        public Criteria andTIdNotEqualTo(Long value) {
+            addCriterion("T_ID <>", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdGreaterThan(Integer value) {
-            addCriterion("help_topic_id >", value, "helpTopicId");
+        public Criteria andTIdGreaterThan(Long value) {
+            addCriterion("T_ID >", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("help_topic_id >=", value, "helpTopicId");
+        public Criteria andTIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("T_ID >=", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdLessThan(Integer value) {
-            addCriterion("help_topic_id <", value, "helpTopicId");
+        public Criteria andTIdLessThan(Long value) {
+            addCriterion("T_ID <", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdLessThanOrEqualTo(Integer value) {
-            addCriterion("help_topic_id <=", value, "helpTopicId");
+        public Criteria andTIdLessThanOrEqualTo(Long value) {
+            addCriterion("T_ID <=", value, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdIn(List<Integer> values) {
-            addCriterion("help_topic_id in", values, "helpTopicId");
+        public Criteria andTIdIn(List<Long> values) {
+            addCriterion("T_ID in", values, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdNotIn(List<Integer> values) {
-            addCriterion("help_topic_id not in", values, "helpTopicId");
+        public Criteria andTIdNotIn(List<Long> values) {
+            addCriterion("T_ID not in", values, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdBetween(Integer value1, Integer value2) {
-            addCriterion("help_topic_id between", value1, value2, "helpTopicId");
+        public Criteria andTIdBetween(Long value1, Long value2) {
+            addCriterion("T_ID between", value1, value2, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andHelpTopicIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("help_topic_id not between", value1, value2, "helpTopicId");
+        public Criteria andTIdNotBetween(Long value1, Long value2) {
+            addCriterion("T_ID not between", value1, value2, "tId");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andTDateIsNull() {
+            addCriterion("T_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andTDateIsNotNull() {
+            addCriterion("T_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andTDateEqualTo(Long value) {
+            addCriterion("T_DATE =", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andTDateNotEqualTo(Long value) {
+            addCriterion("T_DATE <>", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+        public Criteria andTDateGreaterThan(Long value) {
+            addCriterion("T_DATE >", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andTDateGreaterThanOrEqualTo(Long value) {
+            addCriterion("T_DATE >=", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+        public Criteria andTDateLessThan(Long value) {
+            addCriterion("T_DATE <", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andTDateLessThanOrEqualTo(Long value) {
+            addCriterion("T_DATE <=", value, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+        public Criteria andTDateIn(List<Long> values) {
+            addCriterion("T_DATE in", values, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+        public Criteria andTDateNotIn(List<Long> values) {
+            addCriterion("T_DATE not in", values, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andTDateBetween(Long value1, Long value2) {
+            addCriterion("T_DATE between", value1, value2, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andTDateNotBetween(Long value1, Long value2) {
+            addCriterion("T_DATE not between", value1, value2, "tDate");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andTTxtIsNull() {
+            addCriterion("T_TXT is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
+        public Criteria andTTxtIsNotNull() {
+            addCriterion("T_TXT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdIsNull() {
-            addCriterion("help_category_id is null");
+        public Criteria andTTxtEqualTo(Short value) {
+            addCriterion("T_TXT =", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdIsNotNull() {
-            addCriterion("help_category_id is not null");
+        public Criteria andTTxtNotEqualTo(Short value) {
+            addCriterion("T_TXT <>", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdEqualTo(Short value) {
-            addCriterion("help_category_id =", value, "helpCategoryId");
+        public Criteria andTTxtGreaterThan(Short value) {
+            addCriterion("T_TXT >", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdNotEqualTo(Short value) {
-            addCriterion("help_category_id <>", value, "helpCategoryId");
+        public Criteria andTTxtGreaterThanOrEqualTo(Short value) {
+            addCriterion("T_TXT >=", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdGreaterThan(Short value) {
-            addCriterion("help_category_id >", value, "helpCategoryId");
+        public Criteria andTTxtLessThan(Short value) {
+            addCriterion("T_TXT <", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdGreaterThanOrEqualTo(Short value) {
-            addCriterion("help_category_id >=", value, "helpCategoryId");
+        public Criteria andTTxtLessThanOrEqualTo(Short value) {
+            addCriterion("T_TXT <=", value, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdLessThan(Short value) {
-            addCriterion("help_category_id <", value, "helpCategoryId");
+        public Criteria andTTxtIn(List<Short> values) {
+            addCriterion("T_TXT in", values, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdLessThanOrEqualTo(Short value) {
-            addCriterion("help_category_id <=", value, "helpCategoryId");
+        public Criteria andTTxtNotIn(List<Short> values) {
+            addCriterion("T_TXT not in", values, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdIn(List<Short> values) {
-            addCriterion("help_category_id in", values, "helpCategoryId");
+        public Criteria andTTxtBetween(Short value1, Short value2) {
+            addCriterion("T_TXT between", value1, value2, "tTxt");
             return (Criteria) this;
         }
 
-        public Criteria andHelpCategoryIdNotIn(List<Short> values) {
-            addCriterion("help_category_id not in", values, "helpCategoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andHelpCategoryIdBetween(Short value1, Short value2) {
-            addCriterion("help_category_id between", value1, value2, "helpCategoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andHelpCategoryIdNotBetween(Short value1, Short value2) {
-            addCriterion("help_category_id not between", value1, value2, "helpCategoryId");
+        public Criteria andTTxtNotBetween(Short value1, Short value2) {
+            addCriterion("T_TXT not between", value1, value2, "tTxt");
             return (Criteria) this;
         }
     }
