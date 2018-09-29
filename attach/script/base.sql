@@ -73,5 +73,10 @@ create table t_sys_token (
 alter table t_sys_token add primary key (token_id) ;
 
 -- 测试用表
-
+create table `t_table` (
+  `t_id` numeric(20) comment '主键' ,
+  `t_date` numeric(14) comment '日期' ,
+  `t_txt` varchar(40) comment '随便写写' ,
+  primary key (`t_id`)
+) engine=myisam default charset=utf8 collate=utf8_bin;
 
