@@ -28,6 +28,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot-starter.version}</version>
+        </dependency>
         <!-- http client begin -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -83,5 +88,39 @@
         <!-- 拼音end -->
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--
+        此plugin可以用
+        利用此plugin，把源代码中的xml文件，打包到相应位置，
+        这里主要是为了打包Mybatis的mapper.xml文件
+        https://www.cnblogs.com/oyx305/p/5340683.html
+        -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>copy-xmls</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/java</directory>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
