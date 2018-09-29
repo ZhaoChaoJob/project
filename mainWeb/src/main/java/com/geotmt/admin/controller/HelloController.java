@@ -2,17 +2,14 @@ package com.geotmt.admin.controller;
 
 import com.geotmt.admin.dao.TTableMyBatisDao;
 import com.geotmt.admin.model.mongodb.Persion;
-import com.geotmt.admin.service.HelpTopicService;
 import com.geotmt.admin.service.TTableService;
 import com.geotmt.commons.RedisService;
 import com.geotmt.demo.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -109,9 +106,6 @@ public class HelloController {
         }
 
     }
-
-    @Autowired
-    private HelpTopicService helpTopicService;
 
     @RequestMapping("/list")
     @ResponseBody

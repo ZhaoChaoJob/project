@@ -41,6 +41,11 @@ project ==> 业务包
 4. Module结尾的是模块 \
 之后对接多家机构，可以使用module来进行管理
 
+# 项目依赖
+1. zookeeper[dubbo引用]
+2. mysql
+
+
 # 注意
 1. maven 模块依赖的形式，需要重新打包才能刷新到新代码
 
