@@ -16,6 +16,24 @@ config ==> 配置管理 \
 generator ==> 代码生成器 \
 project ==> 业务包
 
+## （2）、模块说明
+### 1.commonModule 公共模块
+- 存放mybatis的dao、mapping、model模块
+- 存放各种工具类
+
+### 2.dubboApiModulede dubbo API
+- dubbo所有的暴露接口都放在这里
+
+### 3.mainWeb web主体
+- 项目所有的配置都放这里
+- 权限体系放在这里
+
+## 4.xxxModule
+- 分模块写业务逻辑，也是dubbo的消费者
+
+## 5.xxxProvider
+- dubbo的生产者
+
 # 五、module划分
 1. Web结尾的是web项目
 2. App结尾的是服务先买
