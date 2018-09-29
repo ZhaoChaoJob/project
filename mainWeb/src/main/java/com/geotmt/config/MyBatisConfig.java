@@ -42,9 +42,9 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 //        bean.setMapperLocations(org.springframework.core.io.Resources "classpath*:/com/geotmt/admin/model/mybatis/mapper/*.xml");
 //        bean.setMapperLocations(new Resource[]{"classpath*:/com/geotmt/admin/model/mybatis/mapper/*.xml"});
         // com.geotmt.admin.model.mybatis
-        bean.setMapperLocations(resolver.getResources("classpath*:com/geotmt/common/mybatis/mapping/*.xml"));
+        bean.setMapperLocations(resolver.getResources("classpath*:com/geotmt/db/mybatis/mapping/*.xml"));
 //        bean.setMapperLocations(new Resource[] { new ClassPathResource("org/mybatis/spring/TestMapper.xml") });//存储mapper文件集合
-        bean.setTypeAliasesPackage("com.geotmt.common.mybatis.model");
+        bean.setTypeAliasesPackage("com.geotmt.db.mybatis.model");
         try {
             return bean.getObject();
         } catch (Exception e) {

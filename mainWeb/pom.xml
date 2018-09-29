@@ -207,6 +207,11 @@
             <artifactId>commonModule</artifactId>
             <version>${commonModule.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.geotmt</groupId>
+            <artifactId>dbModule</artifactId>
+            <version>${dbModule.version}</version>
+        </dependency>
         <!-- 内部模块 end -->
         <dependency>
             <groupId>com.geotmt</groupId>

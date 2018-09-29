@@ -1,4 +1,4 @@
-package com.geotmt.common.mybatis.model;
+package com.geotmt.db.mybatis.model;
 
 import java.io.Serializable;
 

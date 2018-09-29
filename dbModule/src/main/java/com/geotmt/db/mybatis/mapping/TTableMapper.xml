@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geotmt.common.mybatis.dao.TTableMapper" >
-  <resultMap id="BaseResultMap" type="com.geotmt.common.mybatis.model.TTable" >
+<mapper namespace="com.geotmt.db.mybatis.dao.TTableMapper" >
+  <resultMap id="BaseResultMap" type="com.geotmt.db.mybatis.model.TTable" >
     <id column="T_ID" property="tId" jdbcType="DECIMAL" />
     <result column="T_DATE" property="tDate" jdbcType="DECIMAL" />
     <result column="T_TXT" property="tTxt" jdbcType="DECIMAL" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     T_ID, T_DATE, T_TXT
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.geotmt.common.mybatis.model.TTableExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.geotmt.db.mybatis.model.TTableExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from t_table
     where T_ID = #{tId,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.geotmt.common.mybatis.model.TTableExample" >
+  <delete id="deleteByExample" parameterType="com.geotmt.db.mybatis.model.TTableExample" >
     delete from t_table
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.geotmt.common.mybatis.model.TTable" >
+  <insert id="insert" parameterType="com.geotmt.db.mybatis.model.TTable" >
     insert into t_table (T_ID, T_DATE, T_TXT
       )
     values (#{tId,jdbcType=DECIMAL}, #{tDate,jdbcType=DECIMAL}, #{tTxt,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.geotmt.common.mybatis.model.TTable" >
+  <insert id="insertSelective" parameterType="com.geotmt.db.mybatis.model.TTable" >
     insert into t_table
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="tId != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.geotmt.common.mybatis.model.TTableExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.geotmt.db.mybatis.model.TTableExample" resultType="java.lang.Integer" >
     select count(*) from t_table
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.geotmt.common.mybatis.model.TTable" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.geotmt.db.mybatis.model.TTable" >
     update t_table
     <set >
       <if test="tDate != null" >
@@ -172,7 +172,7 @@
     </set>
     where T_ID = #{tId,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.geotmt.common.mybatis.model.TTable" >
+  <update id="updateByPrimaryKey" parameterType="com.geotmt.db.mybatis.model.TTable" >
     update t_table
     set T_DATE = #{tDate,jdbcType=DECIMAL},
       T_TXT = #{tTxt,jdbcType=DECIMAL}

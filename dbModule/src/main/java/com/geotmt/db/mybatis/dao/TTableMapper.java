@@ -1,7 +1,7 @@
-package com.geotmt.common.mybatis.dao;
+package com.geotmt.db.mybatis.dao;
 
-import com.geotmt.common.mybatis.model.TTable;
-import com.geotmt.common.mybatis.model.TTableExample;
+import com.geotmt.db.mybatis.model.TTable;
+import com.geotmt.db.mybatis.model.TTableExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

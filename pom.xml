@@ -19,7 +19,8 @@
 		<module>commonModule</module>
 		<module>rong360Provider</module>
 		<module>dubboApiModule</module>
-	</modules>
+        <module>dbModule</module>
+    </modules>
     <packaging>pom</packaging>
 
 	<name>project</name>
@@ -41,6 +42,7 @@
 		<httpclient.version>4.5.3</httpclient.version>
 		<httpmime.version>4.5.5</httpmime.version>
 		<jedis.version>2.9.0</jedis.version>
+		<junit.version>4.12</junit.version>
 		<lombok.version>1.18.2</lombok.version>
 		<mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
 		<poi.version>3.17</poi.version>
@@ -54,6 +56,7 @@
 		<!-- 内部包 -->
 		<commonModule.version>0.0.1-SNAPSHOT</commonModule.version>
 		<rong360Module.version>0.0.1-SNAPSHOT</rong360Module.version>
+		<dbModule.version>0.0.1-SNAPSHOT</dbModule.version>
 	</properties>
 
 	<build>
