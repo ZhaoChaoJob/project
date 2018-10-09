@@ -20,7 +20,10 @@
 		<module>rong360Provider</module>
 		<module>dubboApiModule</module>
         <module>dbModule</module>
-    </modules>
+		<module>spring-cloud-netflix-web</module>
+		<module>spring-cloud-serverdemo-web</module>
+		<module>spring-cloud-clientdemo-web</module>
+	</modules>
     <packaging>pom</packaging>
 
 	<name>project</name>
