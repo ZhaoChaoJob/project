@@ -42,6 +42,12 @@ project ==> 业务包
 4. Module结尾的是模块 \
 之后对接多家机构，可以使用module来进行管理
 
+# 微服务
+1. 微服务使用spring cloud
+ - 注册中心
+ - 服务端
+ - 消费端
+
 # 项目依赖
 1. zookeeper[dubbo引用]
 2. mysql

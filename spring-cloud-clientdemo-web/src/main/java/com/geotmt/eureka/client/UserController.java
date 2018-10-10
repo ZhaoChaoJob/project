@@ -1,5 +1,7 @@
 package com.geotmt.eureka.client;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -33,7 +35,16 @@ public class UserController {
         return null;
     }
 
+//    @HystrixCommand(fallbackMethod = "findByIdFallback")
+    public Object findByIdFallback(String str) {
+
+        return "findByIdFallback";
+    }
+
     @RequestMapping(value="/getuser/{name}", method= RequestMethod.GET)
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+            @HystrixProperty(name = "execution.timeout.enabled", value = "false")},fallbackMethod = "findByIdFallback")
     public Object getuser(@PathVariable("name")String str) {
        return this.userService.getUser(str) ;
     }
