@@ -11,6 +11,7 @@ public class StatusCode implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected static final Map<String, StatusCode> lookup = new HashMap<>();
+    public static StatusCode OK = new StatusCode("200", "请求成功") ;
     public static StatusCode LOCKERR = new StatusCode("-1000", "锁争抢异常") ;
     public static StatusCode NOSALES = new StatusCode("-998", "不是销售账号不允许登陆") ;
 

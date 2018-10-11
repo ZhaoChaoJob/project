@@ -1,8 +1,9 @@
 package com.geotmt.admin.controller;
 
 
-import com.geotmt.admin.model.jpa.SysMenu;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.common.beans.ResultBean;
+import com.geotmt.common.exception.StatusCode;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -60,12 +60,15 @@ public class SysUserController {
 	/**
 	 * 获取菜单
 	 *
-	 * @param userId
-	 * @return
+	 * @param userId 用户ID
+	 * @return ResultBean
 	 */
 	@RequestMapping(value="/getMenu")
 	@ResponseBody
-	public List<SysMenu> getMenu(@RequestParam("userId") Long userId){
-		return this.sysUserService.getMenu(userId);
+	public ResultBean getMenu(@RequestParam("userId") Long userId){
+		ResultBean resultBean = new ResultBean();
+		resultBean.setData(this.sysUserService.getMenu(userId));
+		resultBean.setStatusCode(StatusCode.OK);
+		return resultBean;
 	}
 }
