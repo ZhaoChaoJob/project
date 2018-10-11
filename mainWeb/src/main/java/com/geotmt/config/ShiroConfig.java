@@ -2,6 +2,7 @@ package com.geotmt.config;
 
 import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.service.SysPermissionService;
+import com.geotmt.admin.service.SysUserService;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -27,6 +28,8 @@ public class ShiroConfig {
     @Autowired
     private SysPermissionService systemService;
 
+    @Autowired
+    private SysUserService sysUserService;
 
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题
@@ -57,7 +60,7 @@ public class ShiroConfig {
 
         //自定义拦截器
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
-        filtersMap.put("auth3",new ShiroTokenFilter());
+        filtersMap.put("auth3",getShiroTokenFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         // 权限控制map
@@ -121,6 +124,12 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    // 这样就是归spring来管理了
+    @Bean
+    public ShiroTokenFilter getShiroTokenFilter(){
+        return new ShiroTokenFilter();
+    }
+
     /**
      * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
      *
@@ -128,8 +137,7 @@ public class ShiroConfig {
      */
     @Bean
     public ShiroRealm myShiroRealm() {
-        ShiroRealm myShiroRealm = new ShiroRealm();
-        return myShiroRealm;
+        return new ShiroRealm();
     }
 
     @Bean

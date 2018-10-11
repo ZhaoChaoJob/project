@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by geo on 2018/10/11. */
 public abstract class BaseController {
-    private final Logger log = LogManager.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger(getClass());
 
     @ExceptionHandler({SimpleException.class,
             NullPointerException.class,

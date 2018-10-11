@@ -1,6 +1,7 @@
 package com.geotmt.admin.service;
 
 import com.geotmt.admin.model.jpa.SysMenu;
+import com.geotmt.admin.model.jpa.SysToken;
 import com.geotmt.admin.model.jpa.SysUser;
 import org.springframework.data.domain.Page;
 
@@ -21,4 +22,21 @@ public interface SysUserService {
 
 	/**获取菜单*/
 	List<SysMenu> getMenu(Long userId);
+
+	/**
+	 * 保存token
+	 * @param userId 用户ID
+	 * @param username 账号
+	 * @param password 密码
+	 * @param accessToken  accessToken
+	 * @return SysToken
+	 */
+	public SysToken saveToken(Long userId, String username, String password, String accessToken);
+
+	/**
+	 * 获取token信息
+	 * @param  accessToken accessToken
+	 * @return SysToken
+	 */
+	public SysToken getTokenById(String accessToken) ;
 }

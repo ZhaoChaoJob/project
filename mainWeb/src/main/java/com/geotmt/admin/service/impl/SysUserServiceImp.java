@@ -10,12 +10,17 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.geotmt.admin.dao.SysTokenRepository;
 import com.geotmt.admin.dao.SysUserRepository;
 import com.geotmt.admin.model.jpa.SysMenu;
+import com.geotmt.admin.model.jpa.SysToken;
 import com.geotmt.admin.model.jpa.SysUser;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.common.utils.DateUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +32,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SysUserServiceImp implements SysUserService {
-
+	private final Logger logger = LogManager.getLogger(getClass());
+	@Autowired
+	private SysTokenRepository sysTokenRepository;
 	@Autowired
 	private SysUserRepository sysUserRepository;
 
@@ -127,5 +134,37 @@ public class SysUserServiceImp implements SysUserService {
 			return null;
 		}
 		return childList;
+	}
+
+	/**
+	 * 保存token
+	 * @param userId 用户ID
+	 * @param username 账号
+	 * @param password 密码
+	 * @param accessToken  accessToken
+	 * @return SysToken
+	 */
+	@Override
+	public SysToken saveToken(Long userId, String username, String password, String accessToken){
+		SysToken sysToken = new SysToken() ;
+		sysToken.setUserId(userId);
+		sysToken.setUserCode(username);
+		sysToken.setPassword(password);
+		sysToken.setInsertTime(DateUtil.getCurrentDate(Long.class));
+		sysToken.setInvalidTime(DateUtil.getCurrentDate(Long.class));
+		sysToken.setTokenId(accessToken);
+		// TODO 先删除userid对应的token
+		return this.sysTokenRepository.save(sysToken);
+	}
+
+	/**
+	 * 获取token信息
+	 * @param  accessToken accessToken
+	 * @return SysToken
+	 */
+	@Override
+	public SysToken getTokenById(String accessToken){
+		logger.info("获取token信息:[{}]",accessToken);
+		return this.sysTokenRepository.findById(accessToken).get();
 	}
 }

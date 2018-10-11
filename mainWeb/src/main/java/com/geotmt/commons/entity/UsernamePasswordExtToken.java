@@ -11,7 +11,7 @@ public class UsernamePasswordExtToken implements HostAuthenticationToken, Rememb
     private char[] password;
     private boolean rememberMe;
     private String host;
-    private String apiToken;
+    private String accessToken;
 
     public UsernamePasswordExtToken() {
         this.rememberMe = false;
@@ -25,12 +25,18 @@ public class UsernamePasswordExtToken implements HostAuthenticationToken, Rememb
         this(username, (char[])(password != null?password.toCharArray():null), false, (String)null);
     }
 
+    public UsernamePasswordExtToken(String username, String password,String accessToken) {
+        this(username, (char[])(password != null?password.toCharArray():null), false, (String)null);
+        this.accessToken = accessToken;
+    }
+
     public UsernamePasswordExtToken(String username, char[] password, String host) {
         this(username, password, false, host);
     }
 
-    public UsernamePasswordExtToken(String username, String password, String host) {
+    public UsernamePasswordExtToken(String username, String password,String accessToken, String host) {
         this(username, password != null?password.toCharArray():null, false, host);
+        this.accessToken = accessToken;
     }
 
     public UsernamePasswordExtToken(String username, char[] password, boolean rememberMe) {
@@ -93,12 +99,12 @@ public class UsernamePasswordExtToken implements HostAuthenticationToken, Rememb
         this.rememberMe = rememberMe;
     }
 
-    public String getApiToken() {
-        return apiToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setApiToken(String apiToken) {
-        this.apiToken = apiToken;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public void clear() {
