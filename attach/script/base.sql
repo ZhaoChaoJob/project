@@ -104,11 +104,12 @@ create table `t_table` (
 -- 菜单表
 create table `t_sys_menu` (
   `menu_id`  		varchar(20) comment '菜单编号' ,
-  `menu_name` 		varchar(40) comment '菜单名称' ,
+  `title` 		varchar(40) comment '菜单名称' ,
   `level` 			numeric(2) comment '级别' ,
   `parent_id` 		varchar(20) comment '父菜单编号',
   `desc` 			varchar(40) comment '菜单描述' ,
   `permission_id` 	numeric(20) comment '资源ID' ,
+  `icon` 	varchar(20) comment '图标' ,
   primary key (`menu_id`)
 ) engine=myisam comment '菜单表';
 alter table t_sys_menu add foreign key(permission_id) references t_sys_permission(permission_id);

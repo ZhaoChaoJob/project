@@ -30,20 +30,20 @@ insert into t_sys_user_user_group(user_id,group_id)
 values(1001,1001);
 
 
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('01','一级菜单1',1,null,'一级菜单1的描述',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('011','二级菜单子菜单1',2,'01','二级菜单子菜单1',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('012','二级菜单子菜单2',2,'01','二级菜单子菜单2',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('013','二级菜单子菜单3',2,'01','二级菜单子菜单3',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('02','一级菜单2',1,null,'一级菜单2的描述',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('021','二级菜单子菜单21',2,'02','二级菜单子菜单21',1001);
-insert into t_sys_menu(menu_id,menu_name,level,parent_id,`desc`,permission_id)
-values('0211','三级菜单子菜单021',3,'021','三级菜单子菜单021',1001);
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('01','一级菜单1',1,null,'一级菜单1的描述',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('011','二级菜单子菜单1',2,'01','二级菜单子菜单1',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('012','二级菜单子菜单2',2,'01','二级菜单子菜单2',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('013','二级菜单子菜单3',2,'01','二级菜单子菜单3',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('02','一级菜单2',1,null,'一级菜单2的描述',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('021','二级菜单子菜单21',2,'02','二级菜单子菜单21',1001,'icon01');
+insert into t_sys_menu(menu_id,title,level,parent_id,`desc`,permission_id,icon)
+values('0211','三级菜单子菜单021',3,'021','三级菜单子菜单021',1001,'icon01');
 
 select m.*,p.url
 from t_sys_user_user_group UP

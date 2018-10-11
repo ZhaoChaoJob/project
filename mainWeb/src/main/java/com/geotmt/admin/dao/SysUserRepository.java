@@ -18,7 +18,7 @@ public interface SysUserRepository extends JpaRepository<SysUser, Long>,JpaSpeci
 	@Query("from SysUser p where p.nickname =:nickname and p.password =:password")
     SysUser findByNameAndPsw(@Param(value = "nickname") String nickname, @Param(value = "password") String password);
 
-    @Query(value = "select m.menu_id as menuId,m.menu_name as menuName,m.level as level,m.parent_id as parentId,m.desc as `desc`,m.permission_id as permissionId,p.url as url " +
+    @Query(value = "select m.menu_id as menuId,m.title as title,m.level as level,m.parent_id as parentId,m.desc as `desc`,m.permission_id as permissionId,m.icon as icon,p.url as  `key` " +
             "from t_sys_user_user_group UP " +
             "LEFT JOIN t_sys_user_group g " +
             "on up.user_id=:userId and UP.group_id=g.group_id " +

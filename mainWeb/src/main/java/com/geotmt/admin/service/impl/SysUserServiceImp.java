@@ -90,7 +90,7 @@ public class SysUserServiceImp implements SysUserService {
 		}
 		// 为一级菜单设置子菜单，getChild是递归调用的
 		for (SysMenu menu : menuList2) {
-			menu.setChildMenus(getChild(menu.getMenuId(), menuList));
+			menu.setChildren(getChild(menu.getMenuId(), menuList));
 		}
 
 		return menuList2;
@@ -120,7 +120,7 @@ public class SysUserServiceImp implements SysUserService {
 		for (SysMenu menu : childList) {// 没有url子菜单还有子菜单
 //            if (StringUtils.isBlank(menu.getUrl())) {
 			// 递归
-			menu.setChildMenus(getChild(menu.getMenuId(), rootMenu));
+			menu.setChildren(getChild(menu.getMenuId(), rootMenu));
 //            }
 		} // 递归退出条件
 		if (childList.size() == 0) {

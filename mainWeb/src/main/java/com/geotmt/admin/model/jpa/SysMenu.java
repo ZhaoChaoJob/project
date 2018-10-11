@@ -17,8 +17,8 @@ public class SysMenu implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id", length = 20)
     private java.lang.String menuId;// 菜单编号;
-    @Column(name = "menu_name", length = 40)
-    private java.lang.String menuName;// 菜单名称;
+    @Column(name = "title", length = 40)
+    private java.lang.String title;// 菜单名称;
     @Column(name = "level", length = 2)
     private Integer level;// 级别;
     @Column(name = "parent_id", length = 32)
@@ -27,10 +27,12 @@ public class SysMenu implements Serializable {
     private java.lang.String desc;// 菜单描述;
     @Column(name = "permission_id", length = 20)
     private Long permissionId;// 资源ID;
+    @Column(name = "icon", length = 20)
+    private String icon;// 图标
     @Transient
-    private String url;// 资源ID;
+    private String key;// 资源ID;
     // 子菜单
     @Transient
-    private List<SysMenu> childMenus;
+    private List<SysMenu> children;
     //columns END
 }
