@@ -105,7 +105,7 @@ public class ShiroConfig {
         List<SysPermission> list = systemService.getPermisAll();
 
         for (SysPermission sysPerm : list) {
-            filterChainDefinitionMap.put(sysPerm.getUrl(), "authc");
+            filterChainDefinitionMap.put(sysPerm.getUrl(), "auth3");
         }
         filterChainDefinitionMap.put("/jpa", "auth3"); // 搜身检查
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

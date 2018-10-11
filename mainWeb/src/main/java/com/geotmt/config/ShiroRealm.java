@@ -3,6 +3,7 @@ package com.geotmt.config;
 import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.model.jpa.SysRole;
 import com.geotmt.admin.model.jpa.SysUser;
+import com.geotmt.admin.model.jpa.SysUserGroup;
 import com.geotmt.admin.service.SysUserService;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
@@ -66,12 +67,15 @@ public class ShiroRealm  extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo =  new SimpleAuthorizationInfo();
         //将用户对应的角色（role）及权限（permission）放入到Authorization里。
 
-        for(SysRole role:userInfo.getRoleList()){
-            authorizationInfo.addRole(role.getRoleName());
-            for(SysPermission p:role.getPermissions()){
-                authorizationInfo.addStringPermission(p.getPermissionStr());
+        for(SysUserGroup sysUserGroup:userInfo.getSysUserGroups()){
+            for(SysRole role:sysUserGroup.getSysRoles()){
+                authorizationInfo.addRole(role.getRoleName());
+                for(SysPermission p:role.getPermissions()){
+                    authorizationInfo.addStringPermission(p.getPermissionStr());
+                }
             }
         }
+
 
         return authorizationInfo;
     }

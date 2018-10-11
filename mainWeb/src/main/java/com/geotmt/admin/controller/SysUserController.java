@@ -1,6 +1,7 @@
 package com.geotmt.admin.controller;
 
 
+import com.geotmt.admin.model.jpa.SysMenu;
 import com.geotmt.admin.service.SysUserService;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -52,5 +55,17 @@ public class SysUserController {
 	@RequestMapping(value = "listUser",method = RequestMethod.GET)
 	public String getListUser(){
 		return "demo/table2";
+	}
+
+	/**
+	 * 获取菜单
+	 *
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value="/getMenu")
+	@ResponseBody
+	public List<SysMenu> getMenu(@RequestParam("userId") Long userId){
+		return this.sysUserService.getMenu(userId);
 	}
 }

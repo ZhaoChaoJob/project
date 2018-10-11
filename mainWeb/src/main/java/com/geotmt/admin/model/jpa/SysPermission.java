@@ -18,7 +18,7 @@ public class SysPermission implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "permission_id", length = 20)
-    private java.math.BigDecimal permissionId;// 权限id;
+    private Long permissionId;// 权限id;
     @Column(name = "available", length = 1)
     private Boolean available;// available;
     @Column(name = "name", length = 255)
@@ -35,7 +35,7 @@ public class SysPermission implements Serializable {
     private String url;// 资源路径;
 
 	@ManyToMany(fetch = FetchType.EAGER)// 立即从数据库中进行加载数据
-	@JoinTable(name = "SysRolePermission", joinColumns = { @JoinColumn(name = "permissionId") }, inverseJoinColumns = { @JoinColumn(name = "roleId") })
+	@JoinTable(name = "t_sys_role_permission", joinColumns = { @JoinColumn(name = "permission_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private List<SysRole> roles;
 
 }

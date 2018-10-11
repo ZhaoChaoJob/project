@@ -1,7 +1,10 @@
 package com.geotmt.admin.service;
 
+import com.geotmt.admin.model.jpa.SysMenu;
 import com.geotmt.admin.model.jpa.SysUser;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 public interface SysUserService {
 
@@ -15,4 +18,7 @@ public interface SysUserService {
 	
 	/**带查询条件的分页查询*/
 	Page<SysUser> findUserCriteria(Integer page, Integer size, SysUser user);
+
+	/**获取菜单*/
+	List<SysMenu> getMenu(Long userId);
 }

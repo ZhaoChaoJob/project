@@ -42,7 +42,8 @@ public class SpringJpaConfig {
         jpaProperties.put("hibernate.jdbc.batch_size",50);
         jpaProperties.put("hibernate.hbm2ddl.auto","update");
         jpaProperties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-
+        jpaProperties.put("hibernate.show_sql",true);
+        jpaProperties.put("hibernate.format_sql",true);
         factory.setJpaPropertyMap(jpaProperties);
         factory.afterPropertiesSet();
         return factory.getObject();

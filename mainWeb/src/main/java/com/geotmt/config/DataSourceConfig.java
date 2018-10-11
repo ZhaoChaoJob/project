@@ -60,7 +60,7 @@ public class DataSourceConfig {
     @Profile(value = {"pro"})
     public DataSource ProDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/apploan?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;
