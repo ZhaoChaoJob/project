@@ -2,6 +2,8 @@ package com.geotmt.config;
 
 import com.geotmt.admin.model.jpa.SysToken;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.common.exception.StatusCode;
+import com.geotmt.common.utils.http.ServletResponseUtils;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -70,7 +72,8 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
         try {
             // 这里区分一下web 还是 api
             // web返回页面，api返回json
-            WebUtils.issueRedirect(request, response, "/login2");
+            // TODO 先这么搞，之后再研究
+            ServletResponseUtils.outputChineseByOutputStream((HttpServletResponse) response, StatusCode.R_ACC_NO_LOGIN.toString());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -87,7 +90,9 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
         if(token == null) {
 //            String e1 = "createToken method implementation returned null. A valid non-null AuthenticationToken must be created in order to execute a login attempt.";
 //            throw new IllegalStateException(e1);
-            return true;
+            // TODO 先这么搞，之后再研究一个更加优雅的方案
+            ServletResponseUtils.outputChineseByOutputStream((HttpServletResponse) response, StatusCode.R_ACC_NO_LOGIN.toString());
+            return false;
         } else {
             try {
                 Subject e = this.getSubject(request, response);

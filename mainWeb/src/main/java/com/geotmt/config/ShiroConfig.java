@@ -96,6 +96,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/api/o/*", "anon");
         filterChainDefinitionMap.put("/web/o/*", "anon");
         filterChainDefinitionMap.put("/com/o/*", "anon");
+        filterChainDefinitionMap.put("/login2", "anon");
 
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
@@ -103,6 +104,7 @@ public class ShiroConfig {
         // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/**", "authFilter");
+        filterChainDefinitionMap.put("/*", "authFilter");
 
         // 从数据库获取
         List<SysPermission> list = systemService.getPermisAll();
