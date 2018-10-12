@@ -5,7 +5,10 @@ import com.geotmt.admin.model.jpa.SysRole;
 import com.geotmt.admin.model.jpa.SysUser;
 import com.geotmt.admin.model.jpa.SysUserGroup;
 import com.geotmt.admin.service.SysUserService;
+import com.geotmt.common.exception.SimpleException;
+import com.geotmt.common.exception.StatusCode;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -45,10 +48,16 @@ public class ShiroRealm  extends AuthorizingRealm {
         String accessToken = UUID.randomUUID().toString().replaceAll("-","") ;
         token.setAccessToken("accessToken:"+accessToken); // 设定一个token，用来做用户登录的唯一标识
 
+        if(StringUtils.isEmpty(username)){
+            throw new SimpleException(StatusCode.E_ACC_NULL_USERNAME) ; // 账号为空
+        }else if(StringUtils.isEmpty(password)){
+            throw new SimpleException(StatusCode.E_ACC_NULL_PASSWORD) ; // 密码为空
+        }
+
         // 从数据库获取对应用户名密码的用户
         SysUser user = systemService.getSysUserByName(username, password);
         if (null == user) {
-            throw new AccountException("帐号或密码不正确！");
+            throw new AuthenticationException(StatusCode.E_ACC_ERR_USERORPASS.toString());
         }else if("0".equals(user.getStatus())){
             /*用户状态,0:创建未认证, 1:正常状态,2：用户被锁定*/
             throw new DisabledAccountException("此帐号已经设置为禁止登录！");

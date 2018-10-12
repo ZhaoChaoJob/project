@@ -1,10 +1,12 @@
 package com.geotmt.admin.service.impl;
 
-import com.geotmt.admin.dao.SysTokenRepository;
 import com.geotmt.admin.service.LoginService;
+import com.geotmt.common.beans.ResultBean;
+import com.geotmt.common.beans.factory.ResultBeanFactory;
+import com.geotmt.common.exception.StatusCode;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    @Autowired
-    private SysTokenRepository sysTokenDao;
     /**
      * 登录
      * @param username 账号
@@ -28,5 +28,19 @@ public class LoginServiceImpl implements LoginService {
         return token.getAccessToken();
     }
 
+    /**
+     * 注销登录
+     * @param accessToken token
+     * @param openId openId
+     * @return ResultBean
+     */
+    @Override
+    public ResultBean logout(String accessToken, String openId){
+        Subject subject = SecurityUtils.getSubject();//取出当前验证主体
+        if (subject != null) {
+            subject.logout();//不为空，执行一次logout的操作，将session全部清空
+        }
+        return ResultBeanFactory.create(StatusCode.OK) ;
+    }
 
 }

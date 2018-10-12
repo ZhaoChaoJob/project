@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by geo on 2018/10/11. */
+ * 请求结果封装类
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL) // 这个注解用来控制json控制不输出
 public class ResultBean implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -18,10 +19,15 @@ public class ResultBean implements Serializable {
     private String code ;
     private String msg ;
 
+    /**
+     * 设置状态信息
+     * @param statusCode 状态对象
+     */
     public void setStatusCode(StatusCode statusCode){
         this.code = statusCode.code();
         this.msg = statusCode.value();
     }
+
 
     public Object getData() {
         return data;
