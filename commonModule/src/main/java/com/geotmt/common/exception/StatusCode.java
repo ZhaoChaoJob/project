@@ -13,8 +13,7 @@ public class StatusCode implements Serializable {
     protected static final Map<String, StatusCode> lookup = new HashMap<>();
     public static StatusCode OK = new StatusCode("200", "请求成功") ;
     public static StatusCode ERROR = new StatusCode("500", "请求失败") ;
-    public static StatusCode LOCKERR = new StatusCode("-1000", "锁争抢异常") ;
-    public static StatusCode NOSALES = new StatusCode("-998", "不是销售账号不允许登陆") ;
+    public static StatusCode R_ACC_NO_LOGIN = new StatusCode("0201001000", "未登录") ;
 
     private String code; // 状态码
     private String value; // 状态码值

@@ -1,5 +1,6 @@
 package com.geotmt.common.beans;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.geotmt.common.exception.StatusCode;
 import com.github.pagehelper.Page;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 
 /**
  * Created by geo on 2018/10/11. */
+@JsonInclude(JsonInclude.Include.NON_NULL) // 这个注解用来控制json控制不输出
 public class ResultBean implements Serializable {
     private static final long serialVersionUID = 1L;
 

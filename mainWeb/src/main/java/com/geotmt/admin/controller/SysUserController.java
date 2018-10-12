@@ -3,6 +3,7 @@ package com.geotmt.admin.controller;
 
 import com.geotmt.admin.service.SysUserService;
 import com.geotmt.common.beans.ResultBean;
+import com.geotmt.common.exception.SimpleException;
 import com.geotmt.common.exception.StatusCode;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.shiro.SecurityUtils;
@@ -18,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
-public class SysUserController {
+public class SysUserController extends BaseController {
 
 	@Autowired
     private SysUserService sysUserService;
@@ -51,6 +52,13 @@ public class SysUserController {
 	@RequestMapping(value = "/login2", method = RequestMethod.GET)
 	public String login() {
 		return "login";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login2() {
+		throw new SimpleException(StatusCode.R_ACC_NO_LOGIN) ;
+
 	}
 
 	@RequestMapping(value = "listUser",method = RequestMethod.GET)

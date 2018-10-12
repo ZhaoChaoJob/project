@@ -1,5 +1,6 @@
 package com.geotmt.admin.model.jpa;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,10 +8,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 菜单类，做好菜单的子父级关系，然后递归遍历一下就成为了tree
+ */
 @Entity
 @Table(name = "t_sys_menu")
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL) // 这个注解用来控制json控制不输出
 public class SysMenu implements Serializable {
     //columns START
     @Id
