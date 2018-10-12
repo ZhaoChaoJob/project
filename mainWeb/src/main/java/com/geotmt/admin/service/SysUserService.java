@@ -29,9 +29,10 @@ public interface SysUserService {
 	 * @param username 账号
 	 * @param password 密码
 	 * @param accessToken  accessToken
+	 * @param openId  openId
 	 * @return SysToken
 	 */
-	public SysToken saveToken(Long userId, String username, String password, String accessToken);
+	public SysToken saveToken(Long userId, String username, String password, String accessToken,String openId);
 
 	/**
 	 * 获取token信息

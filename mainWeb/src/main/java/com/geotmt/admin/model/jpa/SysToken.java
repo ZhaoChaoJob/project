@@ -21,9 +21,11 @@ public class SysToken implements Serializable {
     @Column(name = "token_id", length = 32)
     private String tokenId;// 令牌ID;
     @Column(name = "user_id", length = 20)
-    private Long userId;// 用户ID;
-    @Column(name = "user_code", length = 20)
-    private java.lang.String userCode;// 账号;
+    private Long userId;// 用户ID,区分出openId和userId，主要用于SSO设计
+    @Column(name = "open_id")
+    private String openId ; // openId，即用户在某个子系统的唯一标识
+    @Column(name = "user_name", length = 20)
+    private java.lang.String userName;// 账号;
     @Column(name = "password", length = 32)
     private java.lang.String password;// 密码;
     @Column(name = "insert_time", length = 14)

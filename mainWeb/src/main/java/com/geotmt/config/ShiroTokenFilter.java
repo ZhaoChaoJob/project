@@ -35,13 +35,14 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
     @Override
     protected UsernamePasswordExtToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         String accessToken = getRequestToken((HttpServletRequest)servletRequest);
+        String openId = servletRequest.getParameter("openId");
         UsernamePasswordExtToken usernamePasswordExtToken = new UsernamePasswordExtToken();
         usernamePasswordExtToken.setAccessToken(accessToken);
-        if(accessToken != null){
+        if(StringUtils.isNotEmpty(accessToken) && StringUtils.isNotEmpty(openId)){
             SysToken sysToken = this.systemService.getTokenById(accessToken) ; // 获取账号密码及token状态
             // 这里应当根据token去获取用户名和密码
-            if(sysToken != null){
-                usernamePasswordExtToken.setUsername(sysToken.getUserCode());
+            if(sysToken != null && openId.equals(sysToken.getOpenId())){
+                usernamePasswordExtToken.setUsername(sysToken.getUserName());
                 usernamePasswordExtToken.setPassword(sysToken.getPassword().toCharArray());
                 logger.info("创建token:[{}],username:[{}],password:[{}]",accessToken,usernamePasswordExtToken.getUsername(),usernamePasswordExtToken.getPassword());
                 return usernamePasswordExtToken;
@@ -64,8 +65,6 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setContentType("application/json;charset=utf-8");
-
-
         return false;
     }
 

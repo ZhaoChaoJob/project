@@ -142,13 +142,15 @@ public class SysUserServiceImp implements SysUserService {
 	 * @param username 账号
 	 * @param password 密码
 	 * @param accessToken  accessToken
+	 * @param openId  openId
 	 * @return SysToken
 	 */
 	@Override
-	public SysToken saveToken(Long userId, String username, String password, String accessToken){
+	public SysToken saveToken(Long userId, String username, String password, String accessToken,String openId){
 		SysToken sysToken = new SysToken() ;
 		sysToken.setUserId(userId);
-		sysToken.setUserCode(username);
+		sysToken.setOpenId(openId);
+		sysToken.setUserName(username);
 		sysToken.setPassword(password);
 		sysToken.setInsertTime(DateUtil.getCurrentDate(Long.class));
 		sysToken.setInvalidTime(DateUtil.getCurrentDate(Long.class));

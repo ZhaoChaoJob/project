@@ -47,8 +47,6 @@ public class ShiroRealm  extends AuthorizingRealm {
 
         // 从数据库获取对应用户名密码的用户
         SysUser user = systemService.getSysUserByName(username, password);
-        systemService.saveToken(user.getUserId(),username,password,accessToken);
-
         if (null == user) {
             throw new AccountException("帐号或密码不正确！");
         }else if("0".equals(user.getStatus())){
@@ -57,6 +55,7 @@ public class ShiroRealm  extends AuthorizingRealm {
         }else{
             //登录成功
             //更新登录时间 last login time
+            systemService.saveToken(user.getUserId(),username,password,accessToken,"在user扩展表里抓取openId");
         }
         logger.info("身份认证成功，登录用户："+username);
         return new SimpleAuthenticationInfo(user, password, getName());
