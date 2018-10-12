@@ -47,7 +47,8 @@ public class SysUserController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@ResponseBody
+	@RequestMapping(value = "/login2", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}

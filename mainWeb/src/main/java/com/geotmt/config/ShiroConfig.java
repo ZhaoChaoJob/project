@@ -60,7 +60,7 @@ public class ShiroConfig {
 
         //自定义拦截器
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
-        filtersMap.put("auth3",getShiroTokenFilter());
+        filtersMap.put("authFilter",getShiroTokenFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
 
         // 权限控制map
@@ -102,15 +102,15 @@ public class ShiroConfig {
 
         // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-//        filterChainDefinitionMap.put("/**", "shiroFilter");
+        filterChainDefinitionMap.put("/**", "authFilter");
 
         // 从数据库获取
         List<SysPermission> list = systemService.getPermisAll();
 
         for (SysPermission sysPerm : list) {
-            filterChainDefinitionMap.put(sysPerm.getUrl(), "auth3");
+            filterChainDefinitionMap.put(sysPerm.getUrl(), "authFilter");
         }
-        filterChainDefinitionMap.put("/jpa", "auth3"); // 搜身检查
+        filterChainDefinitionMap.put("/jpa", "authFilter"); // 搜身检查
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

@@ -10,12 +10,14 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Shiro 过滤器
@@ -65,6 +67,16 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setContentType("application/json;charset=utf-8");
+//        try {
+//            WebUtils.issueRedirect(request, response, "/login2");
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
+//        try {
+//            redirectToLogin(request,response);
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
         return false;
     }
 
@@ -75,8 +87,14 @@ public class ShiroTokenFilter extends AuthenticatingFilter {
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         UsernamePasswordExtToken token = createToken(request, response);
         if(token == null) {
-            String e1 = "createToken method implementation returned null. A valid non-null AuthenticationToken must be created in order to execute a login attempt.";
-            throw new IllegalStateException(e1);
+            try {
+                // 这里区分一下web 还是 api
+                // web返回页面，api返回json
+                WebUtils.issueRedirect(request, response, "/login2");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return false;
         } else {
             try {
                 Subject e = this.getSubject(request, response);
