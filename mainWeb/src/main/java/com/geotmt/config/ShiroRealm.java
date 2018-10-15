@@ -27,13 +27,8 @@ import java.util.UUID;
 public class ShiroRealm  extends AuthorizingRealm {
     private final Logger logger = LogManager.getLogger(getClass());
 
-    private final SysUserService systemService;
-
-    // 构造函数
     @Autowired
-    public ShiroRealm(SysUserService systemService) {
-        this.systemService = systemService;
-    }
+    private SysUserService systemService;
 
     /**
      * 判断Token是否支持

@@ -61,7 +61,7 @@ public class SysUserController extends BaseController {
 
 	}
 
-	@RequestMapping(value = "listUser",method = RequestMethod.GET)
+	@RequestMapping(value = "/haha/listUser",method = RequestMethod.GET)
 	public String getListUser(){
 		return "demo/table2";
 	}

@@ -8,6 +8,7 @@ import com.geotmt.common.utils.http.HttpUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +22,7 @@ public abstract class BaseController {
 
     @ExceptionHandler({SimpleException.class,
             AuthenticationException.class,
+            AuthorizationException.class,
             NullPointerException.class,
             RuntimeException.class,
             Exception.class})
@@ -33,13 +35,14 @@ public abstract class BaseController {
 
         boolean ajax = HttpUtil.checkAjaxReq(request) ;
         // ajax调用或者api、app调用就返回json，API路径需要满足规范：/api
-
+        logger.warn("controller统一异常处理",e);
         if (e instanceof SimpleException) {
             return ResultBeanFactory.create(StatusCode.R_ACC_NO_LOGIN);
         }else if(e instanceof AuthenticationException){
             return ResultBeanFactory.create(StatusCode.E_ACC_ERR_USERORPASS);
+        }else if(e instanceof AuthorizationException){
+            return ResultBeanFactory.create(StatusCode.R_ACC_AUTH_NO_ENOUGH);
         }
-
         return ResultBeanFactory.create(null,e.getMessage());
     }
 }

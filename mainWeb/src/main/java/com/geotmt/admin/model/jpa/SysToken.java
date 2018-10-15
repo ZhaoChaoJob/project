@@ -33,5 +33,19 @@ public class SysToken implements Serializable {
     @Column(name = "invalid_time", length = 14)
     private java.lang.Long invalidTime;// 失效时间;
     @Column(name = "status", length = 1)
-    private java.lang.Boolean status;// 令牌状态;
+    private java.lang.Short status;// 令牌状态;
+
+    @Override
+    public String toString() {
+        return "SysToken{" +
+                "tokenId='" + tokenId + '\'' +
+                ", userId=" + userId +
+                ", openId='" + openId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", insertTime=" + insertTime +
+                ", invalidTime=" + invalidTime +
+                ", status=" + status +
+                '}';
+    }
 }

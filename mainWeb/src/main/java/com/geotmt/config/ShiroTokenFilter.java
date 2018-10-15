@@ -27,12 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ShiroTokenFilter extends UserFilter {
 
     private final Logger logger = LogManager.getLogger(getClass());
-    private final SysUserService systemService;
 
     @Autowired
-    public ShiroTokenFilter(SysUserService systemService) {
-        this.systemService = systemService;
-    }
+    private SysUserService systemService;
 
     /**
      * ShiroTokenFilter自定义拦截，允许accessToken+openId进行登录

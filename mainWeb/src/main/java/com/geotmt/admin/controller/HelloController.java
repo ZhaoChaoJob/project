@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import java.util.Map;
  * Created by choa.zhao on 2018/9/12. */
 @Api(value="/根目录", tags="系统框架测试接口")
 @Controller
-public class HelloController {
+public class HelloController extends BaseController{
 
     @Autowired
     private TTableService tTableService;
@@ -47,6 +48,30 @@ public class HelloController {
     @ApiOperation(value="项目正常启动测试", notes="会提示一个包路径")
     String test() {
         return "欢迎进入权限模块，请浏览 com.geotmt.admin.controller 包。";
+    }
+
+    /**
+     * 测试shiro 权限部分，有权限
+     * @return 字符串
+     */
+    @RequestMapping("/shiro")
+    @ResponseBody
+    @ApiOperation(value="测试shiro 权限部分，有权限", notes="会提示一个包路径")
+    @RequiresPermissions("admin:test:shiro")
+    String shiro() {
+        return "测试shiro 权限部分，有权限。";
+    }
+
+    /**
+     * 测试shiro 权限部分，没权限
+     * @return 字符串
+     */
+    @RequestMapping("/shiro2")
+    @ResponseBody
+    @ApiOperation(value="测试shiro 权限部分，没权限", notes="会提示一个包路径")
+    @RequiresPermissions("admin:test:shiro2")
+    String shiro2() {
+        return "测试shiro 权限部分，没权限。";
     }
 
     /**
