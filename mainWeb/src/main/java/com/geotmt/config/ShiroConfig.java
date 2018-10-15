@@ -105,6 +105,7 @@ public class ShiroConfig {
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/jpa", "authFilter"); // 搜身检查
+        filterChainDefinitionMap.put("/com/u/**", "authFilter,authc"); // 搜身检查
         System.out.println("888888"+JSONObject.toJSONString(filterChainDefinitionMap));
 
         // 从数据库获取

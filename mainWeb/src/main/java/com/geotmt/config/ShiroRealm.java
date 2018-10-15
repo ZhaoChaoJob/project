@@ -10,6 +10,7 @@ import com.geotmt.common.exception.StatusCode;
 import com.geotmt.common.utils.context.ServletUtil;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.protocol.HTTP;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -18,8 +19,12 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.web.subject.WebSubject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
@@ -80,8 +85,10 @@ public class ShiroRealm  extends AuthorizingRealm {
                 systemService.saveToken(user.getUserId(),username,password,"accessToken:"+accessToken,"在user扩展表里抓取openId");
             }
             // 登录成功放在token放在head里面
-            ServletUtil.getHttpServletResponse().setHeader("accessToken",token.getAccessToken() );
-            ServletUtil.writeCookie("accessToken",token.getAccessToken() );
+//            ServletRequest request = ((WebSubject)SecurityUtils.getSubject()).getServletRequest();
+            ServletResponse response = ((WebSubject)SecurityUtils.getSubject()).getServletResponse();
+            ((HttpServletResponse)response).setHeader("accessToken",token.getAccessToken() );
+            ServletUtil.writeCookie((HttpServletResponse)response,"accessToken",token.getAccessToken() );
         }
         logger.info("身份认证成功，登录用户："+username);
         return new SimpleAuthenticationInfo(user, password, getName());
