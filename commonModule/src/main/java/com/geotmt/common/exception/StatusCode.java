@@ -17,6 +17,7 @@ public class StatusCode implements Serializable {
     public static StatusCode E_ACC_NULL_USERNAME = new StatusCode("1202001000", "账号不能为空") ;
     public static StatusCode E_ACC_NULL_PASSWORD = new StatusCode("1202002000", "密码不能为空") ;
     public static StatusCode E_ACC_ERR_USERORPASS = new StatusCode("1202011000", "用户名或密码错误") ;
+    public static StatusCode R_ACC_AUTH_NO_ENOUGH = new StatusCode("0204001000", "权限不足") ;
 
     private String code; // 状态码
     private String value; // 状态码值
