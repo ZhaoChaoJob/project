@@ -40,4 +40,10 @@ public interface SysUserService {
 	 * @return SysToken
 	 */
 	public SysToken getTokenById(String accessToken) ;
+
+	/**
+	 * 删除token
+	 * @param accessToken accessToken
+	 */
+	public void delTokenById(String accessToken);
 }

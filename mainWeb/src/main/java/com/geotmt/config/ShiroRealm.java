@@ -7,6 +7,7 @@ import com.geotmt.admin.model.jpa.SysUserGroup;
 import com.geotmt.admin.service.SysUserService;
 import com.geotmt.common.exception.SimpleException;
 import com.geotmt.common.exception.StatusCode;
+import com.geotmt.common.utils.context.ServletUtil;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -76,8 +77,11 @@ public class ShiroRealm  extends AuthorizingRealm {
             if(token.getAccessToken() == null ){
                 String accessToken = UUID.randomUUID().toString().replaceAll("-","") ;
                 token.setAccessToken("accessToken:"+accessToken); // 设定一个token，用来做用户登录的唯一标识
-                systemService.saveToken(user.getUserId(),username,password,accessToken,"在user扩展表里抓取openId");
+                systemService.saveToken(user.getUserId(),username,password,"accessToken:"+accessToken,"在user扩展表里抓取openId");
             }
+            // 登录成功放在token放在head里面
+            ServletUtil.getHttpServletResponse().setHeader("accessToken",token.getAccessToken() );
+            ServletUtil.writeCookie("accessToken",token.getAccessToken() );
         }
         logger.info("身份认证成功，登录用户："+username);
         return new SimpleAuthenticationInfo(user, password, getName());

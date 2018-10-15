@@ -169,4 +169,13 @@ public class SysUserServiceImp implements SysUserService {
 		logger.info("获取token信息:[{}]",accessToken);
 		return this.sysTokenRepository.findById(accessToken).get();
 	}
+
+	/**
+	 * 删除token
+	 * @param accessToken accessToken
+	 */
+	@Override
+	public void delTokenById(String accessToken){
+		this.sysTokenRepository.deleteById(accessToken);
+	}
 }

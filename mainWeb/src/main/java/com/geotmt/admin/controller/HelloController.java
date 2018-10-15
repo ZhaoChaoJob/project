@@ -142,7 +142,6 @@ public class HelloController extends BaseController{
     @GetMapping("/list")
     @ResponseBody
     @ApiOperation(value="mybatis分页查询", notes="需要上传两个参数，当前页数和每页查询的条数！")
-
     @ApiImplicitParams({
             @ApiImplicitParam(name="pageNo",value="数字",required = true,paramType="query",dataType = "int"),
             @ApiImplicitParam(name="pageSize",value="数字",required = true,paramType="query",dataType = "int")

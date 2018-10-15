@@ -11,6 +11,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -64,9 +65,11 @@ public class ShiroConfig {
         //自定义拦截器
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
         filtersMap.put("authFilter",getShiroTokenFilter());
+        filtersMap.put("logout",getShiroLogoutFilter());
+
         shiroFilterFactoryBean.setFilters(filtersMap);
         // 权限控制map
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置不会被拦截的链接 顺序判断
         /*
             权限拦截
@@ -127,10 +130,38 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    // 取消自动注册
+    // 不然默认/*全拦截
+    // https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-disable-registration-of-a-servlet-or-filter
+    @Bean
+    public FilterRegistrationBean ShiroTokenFilterRegistration(ShiroTokenFilter shiroTokenFilter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean(shiroTokenFilter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
+    // 取消自动注册
+    // 不然默认/*全拦截
+    // https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-disable-registration-of-a-servlet-or-filter
+    @Bean
+    public FilterRegistrationBean ShiroLogoutFilterRegistration(ShiroLogoutFilter shiroLogoutFilter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean(shiroLogoutFilter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
     // 这样就是归spring来管理了
     @Bean
     public ShiroTokenFilter getShiroTokenFilter(){
         return new ShiroTokenFilter();
+    }
+
+    // 这样就是归spring来管理了
+    @Bean
+    public ShiroLogoutFilter getShiroLogoutFilter(){
+        ShiroLogoutFilter filter= new ShiroLogoutFilter();
+        filter.setRedirectUrl("/login/去登陆吧少年……");
+        return filter;
     }
 
     /**

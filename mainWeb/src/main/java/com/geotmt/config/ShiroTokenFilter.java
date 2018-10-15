@@ -3,6 +3,7 @@ package com.geotmt.config;
 import com.geotmt.admin.model.jpa.SysToken;
 import com.geotmt.admin.service.SysUserService;
 import com.geotmt.common.exception.StatusCode;
+import com.geotmt.common.utils.context.ServletUtil;
 import com.geotmt.common.utils.http.ServletResponseUtils;
 import com.geotmt.commons.entity.UsernamePasswordExtToken;
 import org.apache.commons.lang.StringUtils;
@@ -125,7 +126,7 @@ public class ShiroTokenFilter extends UserFilter {
      * @param httpRequest HttpServletRequest
      * @return accessToken
      */
-    private String getRequestToken(HttpServletRequest httpRequest){
+    static String getRequestToken(HttpServletRequest httpRequest){
         //从header中获取token
         String accessToken = httpRequest.getHeader("accessToken");
 
@@ -133,7 +134,10 @@ public class ShiroTokenFilter extends UserFilter {
         if(StringUtils.isEmpty(accessToken)){
             accessToken = httpRequest.getParameter("accessToken");
         }
-        logger.info("获取请求的token:[{}]",accessToken);
+
+        if(StringUtils.isEmpty(accessToken)){
+            accessToken = ServletUtil.getCookie(httpRequest,"accessToken");
+        }
         return accessToken;
     }
 }

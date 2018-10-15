@@ -83,7 +83,7 @@ alter table t_sys_user_user_group add foreign key(group_id) references t_sys_use
 -- 用户Token表，主要用户Api调用
 -- drop table if exists t_sys_token;
 create table t_sys_token (
-  `token_id` 			varchar(32) not null	comment '令牌ID' 	,
+  `token_id` 			varchar(44) not null	comment '令牌ID' 	,
   `user_id` 			numeric(20) 			comment '用户ID' 	,
   `open_id` 			varchar(32) 			comment 'openId，即用户在某个子系统的唯一标识' 	,
   `user_name`			varchar(20)  			comment '账号' 		,
