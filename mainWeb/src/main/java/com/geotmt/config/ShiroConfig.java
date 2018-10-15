@@ -1,5 +1,6 @@
 package com.geotmt.config;
 
+import com.alibaba.fastjson.JSONObject;
 import com.geotmt.admin.model.jpa.SysPermission;
 import com.geotmt.admin.service.SysPermissionService;
 import com.geotmt.admin.service.SysUserService;
@@ -22,6 +23,8 @@ import java.util.Map;
 /**
  * shiro配置项
  * https://download.csdn.net/download/lzbcitl/10537303
+ * https://www.jianshu.com/p/672abf94a857?winzoom=1
+ * https://gitee.com/zhang.w/boot-backend/blob/master/src/main/java/com/zw/admin/server/config/ShiroConfig.java
  */
 @Configuration
 public class ShiroConfig {
@@ -62,7 +65,6 @@ public class ShiroConfig {
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
         filtersMap.put("authFilter",getShiroTokenFilter());
         shiroFilterFactoryBean.setFilters(filtersMap);
-
         // 权限控制map
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
@@ -83,28 +85,24 @@ public class ShiroConfig {
             /com/o/*    -- 通用开放接口
             /com/u/*    -- 通用普通用户接口
             /com/m/*    -- 通用管理员接口
-            /
+            /authc FormAuthenticationFilter
          */
         filterChainDefinitionMap.put("/js/*.js", "anon"); // 放行
         filterChainDefinitionMap.put("/plugins/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
-        filterChainDefinitionMap.put("/jsplug/**", "anon");
+        filterChainDefinitionMap.put("/haha/**", "anon");
         filterChainDefinitionMap.put("/ajaxLogin", "anon");
         filterChainDefinitionMap.put("/listUser", "anon");
-        filterChainDefinitionMap.put("/app/o/*", "anon");
-        filterChainDefinitionMap.put("/api/o/*", "anon");
-        filterChainDefinitionMap.put("/web/o/*", "anon");
-        filterChainDefinitionMap.put("/com/o/*", "anon");
+        filterChainDefinitionMap.put("/app/o/**", "anon");
+        filterChainDefinitionMap.put("/api/o/**", "anon");
+        filterChainDefinitionMap.put("/web/o/**", "anon");
+        filterChainDefinitionMap.put("/com/o/**", "anon");
         filterChainDefinitionMap.put("/login2", "anon");
-
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/jpa", "authc"); // 搜身检查
-        // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
-        // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/**", "authFilter");
-        filterChainDefinitionMap.put("/*", "authFilter");
+        filterChainDefinitionMap.put("/jpa", "authFilter"); // 搜身检查
+        System.out.println("888888"+JSONObject.toJSONString(filterChainDefinitionMap));
 
         // 从数据库获取
         List<SysPermission> list = systemService.getPermisAll();
@@ -112,6 +110,9 @@ public class ShiroConfig {
         for (SysPermission sysPerm : list) {
             filterChainDefinitionMap.put(sysPerm.getUrl(), "authFilter");
         }
+        // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
+        // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
+        filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
