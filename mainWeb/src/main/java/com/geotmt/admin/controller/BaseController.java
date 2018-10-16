@@ -1,5 +1,6 @@
 package com.geotmt.admin.controller;
 
+import com.geotmt.admin.model.jpa.SysUser;
 import com.geotmt.common.beans.ResultBean;
 import com.geotmt.common.beans.factory.ResultBeanFactory;
 import com.geotmt.common.exception.SimpleException;
@@ -7,6 +8,7 @@ import com.geotmt.common.exception.StatusCode;
 import com.geotmt.common.utils.http.HttpUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +21,19 @@ import javax.servlet.http.HttpServletResponse;
  * Created by geo on 2018/10/11. */
 public abstract class BaseController {
     private final Logger logger = LogManager.getLogger(getClass());
+
+    public SysUser getSysUser(){
+        return  (SysUser) SecurityUtils.getSubject().getPrincipal();
+    }
+
+    public Long getSysUserId(){
+        SysUser sysUser =  getSysUser();
+        if(sysUser != null){
+            return sysUser.getUserId() ;
+        }else {
+            return null;
+        }
+    }
 
     @ExceptionHandler({SimpleException.class,
             AuthenticationException.class,
