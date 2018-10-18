@@ -23,7 +23,8 @@
 		<module>spring-cloud-register-web</module>
 		<module>spring-cloud-serverdemo-web</module>
 		<module>spring-cloud-clientdemo-web</module>
-	</modules>
+        <module>spring-cloud-admin-web</module>
+    </modules>
     <packaging>pom</packaging>
 
 	<name>project</name>
