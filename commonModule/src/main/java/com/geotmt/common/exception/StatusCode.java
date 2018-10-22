@@ -14,6 +14,7 @@ public class StatusCode implements Serializable {
     // 基本状态码
     public static StatusCode OK = new StatusCode("200", "请求成功") ;
     public static StatusCode ERROR = new StatusCode("500", "请求失败") ;
+    public static StatusCode E_SYS_BUSY = new StatusCode("100", "系统繁忙") ;
 
     // 参数状态码区间
     public static StatusCode E_PARAM_LOST = new StatusCode("1101001000", "缺少参数错误") ;
