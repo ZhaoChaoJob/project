@@ -15,3 +15,11 @@ zuul:
     users:
       path: /myusers/**
       serviceId: BING-FIRST-PRODUCTION
+
+ribbon:
+  eureka:
+    enabled: false
+
+BING-FIRST-PRODUCTION:
+  ribbon:
+    listOfServers: http://localhost:8090,http://localhost:8091
