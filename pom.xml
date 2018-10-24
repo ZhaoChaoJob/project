@@ -20,10 +20,12 @@
 		<module>rong360Provider</module>
 		<module>dubboApiModule</module>
         <module>dbModule</module>
-		<module>spring-cloud-register-web</module>
+		<module>spring-cloud-eureka-web</module>
 		<module>spring-cloud-serverdemo-web</module>
 		<module>spring-cloud-clientdemo-web</module>
         <module>spring-cloud-admin-web</module>
+        <module>vueFront</module>
+        <module>spring-cloud-zuul-web</module>
     </modules>
     <packaging>pom</packaging>
 
