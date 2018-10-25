@@ -2,21 +2,44 @@
 # 二、项目特点
 1. 牛逼
 
-# 三、目宗旨
-1. 打造一款轻量级的web架构
-2. 支持集群部署
-3. 支持tokenId登录
+# 三、项目简介
+## （1）web部分
+1. 打造一款轻量级的web架构： \
+    springboot + shiro + mybatis + jpa + mongodb + redis + swagger；
+2. 集群部署： \
+    session缓存在redis里面；
+3. TokenId登录： \
+    支持web登录和api服务项目；
+4. SpringCloud微服务 或者 Dubbo；（不建议使用）
+5. 模块分离。
 
-# 四项目资料
-## （1）、包含义
-com.geotmt ===> 基础路径 \
-admin ==> 权限管理部分 \
-commons ==> 基础工具包 \
-config ==> 配置管理 \
-generator ==> 代码生成器 \
-project ==> 业务包
+## （2）微服务部分
+1. 微服务提供两种解决方案SpringCloud（Rest风格） 和 Dubbo（RPC），当然推荐使用Spring家族的开源框架，没啥理由就是信任。
+2.  采用SpringCloud模块：\
+    a、 Eureka 注册中心 \
+    b、 消费端 ：\
+        · Eureka Client 链接注册中心 \
+        · Ribbon 负载均衡 \
+        · Feign 访问服务端 \
+        · Hystrix 熔断和断路器 \
+        · 监控检查 \
+    c、 服务端：\
+        · Eureka Server 链接注册中心 \
+        · 健康检查
+    d、 可视化监控 spring cloud admin \
+    e、 zuul 网关 暂不启用 
 
-## （2）、模块说明
+# 四、项目规范
+## （1）命名规则
+### 1、Module 约束
+1. Module 名称单词间以横线分隔；
+2. Module 命名
+   1. Web结尾的是web项目
+   2. App结尾的是服务先买
+   3. Batch结尾的是批量项目
+   4. Module结尾的是模块 \
+
+### （2）、模块说明
 ### 1.commonModule 公共模块
 - 存放mybatis的dao、mapping、model模块
 - 存放各种工具类
@@ -35,18 +58,6 @@ project ==> 业务包
 ## 5.xxxProvider
 - dubbo的生产者
 
-# 五、module划分
-1. Web结尾的是web项目
-2. App结尾的是服务先买
-3. Batch结尾的是批量项目
-4. Module结尾的是模块 \
-之后对接多家机构，可以使用module来进行管理
-
-# 微服务
-1. 微服务使用spring cloud
- - 注册中心
- - 服务端
- - 消费端
 
 # 项目依赖
 1. zookeeper[dubbo引用]
