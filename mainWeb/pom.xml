@@ -238,6 +238,13 @@
             <scope>compile</scope>
         </dependency>
         <!-- swagger -->
+        <!-- springboot热部署插件 开始 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- springboot热部署插件 结束 -->
     </dependencies>
 
     <!-- 根据不同的profiles 对应不同的环境 begin -->

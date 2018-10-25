@@ -10,7 +10,7 @@
     session缓存在redis里面；
 3. TokenId登录： \
     支持web登录和api服务项目；
-4. SpringCloud微服务 或者 Dubbo；（不建议使用）
+4. SpringCloud微服务 或者 Dubbo；
 5. 模块分离。
 
 ## （2）微服务部分
@@ -37,7 +37,7 @@
    1. Web结尾的是web项目
    2. App结尾的是服务先买
    3. Batch结尾的是批量项目
-   4. Module结尾的是模块 \
+   4. Module结尾的是模块
 
 ### （2）、模块说明
 ### 1.commonModule 公共模块
