@@ -54,7 +54,7 @@ public abstract class BaseController {
         if (e instanceof SimpleException) {
             return ResultBeanFactory.create(StatusCode.R_ACC_NO_LOGIN);
         }else if(e instanceof AuthenticationException){
-            return ResultBeanFactory.create(StatusCode.E_ACC_ERR_USERORPASS);
+            return ResultBeanFactory.create(StatusCode.E_ACC_NULL_ACC_PASS);
         }else if(e instanceof AuthorizationException){
             return ResultBeanFactory.create(StatusCode.R_ACC_AUTH_NO_ENOUGH);
         }
