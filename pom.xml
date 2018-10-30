@@ -26,7 +26,8 @@
         <module>spring-cloud-admin-web</module>
         <module>vueFront</module>
         <module>spring-cloud-zuul-web</module>
-    </modules>
+		<module>spring-cloud-server-sso-web</module>
+	</modules>
     <packaging>pom</packaging>
 
 	<name>project</name>
