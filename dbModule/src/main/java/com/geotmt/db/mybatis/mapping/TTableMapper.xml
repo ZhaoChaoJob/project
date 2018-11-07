@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geotmt.db.mybatis.dao.TTableMapper" >
+<mapper namespace="com.geotmt.db.mybatis.TTableMapper.dao" >
   <resultMap id="BaseResultMap" type="com.geotmt.db.mybatis.model.TTable" >
     <id column="T_ID" property="tId" jdbcType="DECIMAL" />
     <result column="T_DATE" property="tDate" jdbcType="DECIMAL" />

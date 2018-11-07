@@ -1,4 +1,4 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 /**
  * spring jdbc 配置
  */
-@Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
 public class SpringJdbcConfig {
 

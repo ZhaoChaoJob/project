@@ -1,6 +1,5 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
 
@@ -9,7 +8,6 @@ import org.springframework.context.annotation.Profile;
  * dubbo 配置
  * https://github.com/123liudong/springBoot-dubbo
  * Created by geo on 2018/9/28. */
-@Configuration
 public class DubboConfig {
 
     @Profile(value = {"dev"})

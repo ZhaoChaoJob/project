@@ -1,4 +1,4 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -12,7 +12,7 @@ import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
@@ -20,7 +20,6 @@ import java.time.Duration;
 /**
  * Redis配置
  */
-@Configuration
 @EnableCaching //启用缓存的意思
 public class RedisConfig extends CachingConfigurerSupport{
     @Autowired

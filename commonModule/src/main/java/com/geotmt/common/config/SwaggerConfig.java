@@ -1,4 +1,4 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

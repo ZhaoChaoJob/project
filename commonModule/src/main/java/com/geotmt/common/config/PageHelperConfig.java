@@ -1,16 +1,16 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import com.github.pagehelper.PageHelper;
-import java.util.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Properties;
 
 /**
  * @author zhuxiaomeng
  * @date 2018/1/2.
  * @email 154040976@qq.com
  */
-@Configuration
 public class PageHelperConfig {
 
 

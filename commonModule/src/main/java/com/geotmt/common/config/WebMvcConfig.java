@@ -1,6 +1,5 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -9,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * MVC配置
  *
  * Created by chao.zhao on 2018/3/13. */
-@Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override

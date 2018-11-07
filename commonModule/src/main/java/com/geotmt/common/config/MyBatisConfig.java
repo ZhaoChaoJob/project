@@ -1,4 +1,4 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -6,8 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -20,7 +18,6 @@ import javax.sql.DataSource;
  * MyBatis配置
  * https://www.cnblogs.com/zhuxiaojie/p/5836159.html
  */
-@Configuration
 //加上这个注解，使得支持事务
 @EnableTransactionManagement
 public class MyBatisConfig implements TransactionManagementConfigurer {

@@ -1,8 +1,7 @@
-package com.geotmt.config;
+package com.geotmt.common.config;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
-import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,6 @@ import java.util.List;
  * mongodb配置
  * https://blog.csdn.net/daibang2182/article/details/80585004
  */
-@Configuration
 public class MongoConfig {
 
     @Autowired
